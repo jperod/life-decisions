@@ -4,7 +4,7 @@ Danish weather is very uncertain, so I made this code to help me decide what jac
 
 ## What Jacket to wear?
 
-- **Datetime**: 2024-09-12 21:30
+- **Datetime**: 2024-09-12 21:33
 - **Recommended Jacket Type**: Regular Jacket with Warm Layers
 - **Take a Rain Jacket?** No
 
