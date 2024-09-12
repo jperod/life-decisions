@@ -122,3 +122,5 @@ dmypy.json
 
 # python venv
 .venv
+
+.env
