@@ -1,12 +1,12 @@
 # Jacket Decision Maker
 
-This script helps you decide what jacket to wear based on weather data.
+Danish weather is very uncertain, so I made this code to help me decide what jacket to wear based on weather data.
 
-## Summary of Decisions
+## What Jacket to wear?
 
-- **Datetime**: 2024-09-12 21:22
+- **Datetime**: 2024-09-12 21:25
 - **Recommended Jacket Type**: Regular Jacket with Warm Layers
-- **Take a Rain Jacket?**: No
+- **Take a Rain Jacket?** No
 
 ## Weather Forecast
 |    | datetime_cph              |   deg_c |   deg_c_min |   deg_c_max |   deg_c_feels | weather   | wind   | rain   |

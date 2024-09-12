@@ -201,13 +201,13 @@ print(rain_jacket)
 # Define the content to be written
 readme_content = f"""# Jacket Decision Maker
 
-This script helps you decide what jacket to wear based on weather data.
+Danish weather is very uncertain, so I made this code to help me decide what jacket to wear based on weather data.
 
-## Summary of Decisions
+## What Jacket to wear?
 
 - **Datetime**: {datetime.datetime.now().astimezone(pytz.timezone("Europe/Copenhagen")).strftime("%Y-%m-%d %H:%M")}
 - **Recommended Jacket Type**: {jacket}
-- **Take a Rain Jacket?**: {rain_jacket}
+- **Take a Rain Jacket?** {rain_jacket}
 
 ## Weather Forecast
 {df.to_markdown()}
