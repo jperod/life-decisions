@@ -200,7 +200,7 @@ print(rain_jacket)
 
 
 # Define the content to be written
-readme_content = f"""# Jacket Decision Maker
+readme_content = f"""# Copenhagen Jacket Decision Maker
 
 Danish weather is very uncertain, so I made this code to help me decide what jacket to wear based on weather data.
 
