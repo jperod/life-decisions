@@ -4,9 +4,14 @@ version = "0.1.0"
 description = ""
 authors = ["Pedro <p3dror@gmail.com>"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
+pytz = "^2024.2"
+pandas = "^2.2.2"
+pydantic = "^2.9.1"
+python-dotenv = "^1.0.1"
 
 
 [build-system]
