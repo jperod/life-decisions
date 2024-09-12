@@ -231,7 +231,7 @@ def run_command(command):
 
 # Git operations
 run_command('git add .')
-run_command('git commit -m "Update README.md with latest information"')
+run_command('git commit -m "Auto Update README.md with latest information"')
 run_command('git push origin main')
 
 print("Done.")
