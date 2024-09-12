@@ -210,7 +210,7 @@ Danish weather is very uncertain, so I made this code to help me decide what jac
 - **Take a Rain Jacket?** {rain_jacket}
 
 ## Weather Forecast
-{df.to_markdown()}
+{df.to_markdown(index=False)}
 
 """
 
