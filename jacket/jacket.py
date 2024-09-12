@@ -189,6 +189,7 @@ for i, ele in enumerate(list_data[0:5]):
     rows.append(row.model_dump())
 
 df = pd.DataFrame(rows)
+df["datetime_cph"] = df["datetime_cph"].dt.strftime("%Y-%m-%d %H:%M")
 print(df)
 
 jdm = MyJacketDecisionMaker(rows, verbose=True)
