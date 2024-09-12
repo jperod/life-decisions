@@ -40,9 +40,10 @@ class RainJacketDecision(Enum):
 
 class JacketDecision:
     WARM_JACKET = "Warm Jacket"
-    REGULAR_JACKET = "Regular Jacket"
-    NO_JACKET = "No Jacket"
-    OPTIONAL_JACKET = "Optional Jacket"
+    REGULAR_JACKET_w_LAYERS = "Regular Jacket with Warm Layers"
+    REGULAR_JACKET = "Regular Jacket and T-Shirt"
+    LIGHT_JACKET = "T-shirt + Light Jacket"
+    TSHIRT = "T-Shirt"
 
 class MyJacketDecisionMaker:
 
@@ -118,26 +119,30 @@ class MyJacketDecisionMaker:
         avg_feels_like_temp = total_feels_like_temp / count
 
         # Decision logic
-        if avg_feels_like_temp < 8:
+        if avg_feels_like_temp < 6:
             if self.verbose:
                 print("Take a warm jacket, it's cold!")
             return JacketDecision.WARM_JACKET
         elif avg_feels_like_temp < 12:
             if self.verbose:
                 print("Take a regular jacket, with layers inside!")
-            return JacketDecision.REGULAR_JACKET
+            return JacketDecision.REGULAR_JACKET_w_LAYERS
         elif avg_feels_like_temp < 17:
             if self.verbose:
                 print("Take a regular jacket with shirt")
             return JacketDecision.REGULAR_JACKET
-        elif avg_feels_like_temp > 17 and min_temp >= 16:
+        elif avg_feels_like_temp < 20 :
             if self.verbose:
                 print("No need to take jacket today")
-            return JacketDecision.NO_JACKET
+            return JacketDecision.LIGHT_JACKET
         elif avg_feels_like_temp >= 20 and min_temp >= 18:
             if self.verbose:
                 print("It's hot today, a T-shirt will be all you need")
-            return JacketDecision.NO_JACKET
+            return JacketDecision.TSHIRT
+        else:
+            if self.verbose:
+                print("It's will be hot and chilly, take a light jacket")
+            return JacketDecision.LIGHT_JACKET
 
 
 openweather_api = OpenWeatherMapApi()
@@ -186,5 +191,29 @@ df = pd.DataFrame(rows)
 print(df)
 
 jdm = MyJacketDecisionMaker(rows, verbose=True)
-jdm.should_take_rain_jacket()
-jdm.decide_jacket()
+jacket = jdm.decide_jacket()
+print(jacket)
+rain_jacket = jdm.should_take_rain_jacket()
+print(rain_jacket)
+
+
+# Define the content to be written
+readme_content = f"""# Jacket Decision Maker
+
+This script helps you decide what jacket to wear based on weather data.
+
+## Summary of Decisions
+
+- **Jacket Type**: {jacket}
+- **Rain Jacket**: {rain_jacket}
+
+"""
+
+# Path to the README.md file
+file_path = 'README.md'
+
+# Write content to the file
+with open(file_path, 'w') as file:
+    file.write(readme_content)
+
+print(f'Content written to {file_path}')
