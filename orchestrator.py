@@ -11,9 +11,9 @@ def job():
     subprocess.run([venv_python_path, script_path])
 
 # Schedule the job every 20 minutes
-schedule.every(10).seconds.do(job)
+schedule.every(60).minutes.do(job)
 
 while True:
     print(datetime.datetime.now())
     schedule.run_pending()
-    time.sleep(1)  # Sleep for 1 second to prevent high CPU usage
+    time.sleep(60)  # Sleep for 60 seconds to prevent high CPU usage
