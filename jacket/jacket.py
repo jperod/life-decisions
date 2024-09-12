@@ -11,6 +11,7 @@ from pydantic import BaseModel
 from typing import List
 import datetime
 import pytz
+import subprocess
 from common.weather_utils import (
     kelvin_to_celsius,
     classify_rain_intensity_3h,
@@ -204,8 +205,9 @@ This script helps you decide what jacket to wear based on weather data.
 
 ## Summary of Decisions
 
-- **Jacket Type**: {jacket}
-- **Rain Jacket**: {rain_jacket}
+- **Datetime**: {datetime.datetime.now().astimezone(pytz.timezone("Europe/Copenhagen")).strftime("%Y-%m-%d %H:%M")}
+- **Recommended Jacket Type**: {jacket}
+- **Take a Rain Jacket?**: {rain_jacket}
 
 """
 
@@ -217,3 +219,19 @@ with open(file_path, 'w') as file:
     file.write(readme_content)
 
 print(f'Content written to {file_path}')
+
+
+# Define a function to run a command and capture its output
+def run_command(command):
+    result = subprocess.run(command, shell=True, text=True, capture_output=True)
+    if result.returncode == 0:
+        print(result.stdout)
+    else:
+        print(f"Error: {result.stderr}")
+
+# Git operations
+run_command('git add .')
+run_command('git commit -m "Update README.md with latest information"')
+run_command('git push origin main')
+
+print("Done.")
