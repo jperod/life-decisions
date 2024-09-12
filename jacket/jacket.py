@@ -227,7 +227,7 @@ def run_command(command):
     if result.returncode == 0:
         print(result.stdout)
     else:
-        print(f"Error: {result.stderr}")
+        raise SystemError(f"Error: {result.stderr}")
 
 # Git operations
 
