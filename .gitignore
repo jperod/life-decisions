@@ -119,3 +119,6 @@ dmypy.json
 
 #Pycharm IDE
 .idea
+
+# python venv
+.venv
