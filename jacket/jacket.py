@@ -230,9 +230,13 @@ def run_command(command):
         print(f"Error: {result.stderr}")
 
 # Git operations
+
 run_command('git add .')
 run_command('git pull origin')
-run_command('git commit -m "Auto Update README.md with latest information"')
-run_command('git push origin main')
+try:
+    run_command('git commit -m "Auto Update README.md with latest information"')
+    run_command('git push origin main')
+except:
+    print("No changes to commit.")
 
 print("Done.")
