@@ -28,10 +28,10 @@ class ForecastDataRow(BaseModel):
     deg_c: float
     deg_c_min: float
     deg_c_max: float
-    deg_c_feels_like: float
+    deg_c_feels: float
     weather: str
     wind: Literal["Low", "Medium", "High", "None"]
-    wind_speed: float
+    # wind_speed: float
     rain: Optional[Literal["Low", "Medium", "High", "None"]]
 
 class RainJacketDecision(Enum):
@@ -108,8 +108,8 @@ class MyJacketDecisionMaker:
         
         # Iterate over weather data to compute averages and minimums
         for entry in self.forecast:
-            if 'deg_c_feels_like' in entry:
-                total_feels_like_temp += entry['deg_c_feels_like']
+            if 'deg_c_feels' in entry:
+                total_feels_like_temp += entry['deg_c_feels']
                 min_temp = min(min_temp, entry['deg_c_min'])
                 count += 1
         
@@ -166,7 +166,7 @@ for i, ele in enumerate(list_data[0:5]):
     deg_c = kelvin_to_celsius(ele["main"]["temp"])
     deg_c_min = kelvin_to_celsius(ele["main"]["temp_min"])
     deg_c_max = kelvin_to_celsius(ele["main"]["temp_max"])
-    deg_c_feels_like = kelvin_to_celsius(ele["main"]["feels_like"])
+    deg_c_feels = kelvin_to_celsius(ele["main"]["feels_like"])
     weather = ele["weather"][0]["main"]
     wind_speed = ele["wind"]["speed"]
     wind_gust = ele["wind"]["gust"]
@@ -180,10 +180,10 @@ for i, ele in enumerate(list_data[0:5]):
         deg_c=deg_c,
         deg_c_min=deg_c_min,
         deg_c_max=deg_c_max,
-        deg_c_feels_like=deg_c_feels_like,
+        deg_c_feels=deg_c_feels,
         weather=weather,
         wind=wind,
-        wind_speed=wind_speed,
+        # wind_speed=wind_speed,
         rain=rain_3h_intensity,
     )
     rows.append(row.model_dump())
