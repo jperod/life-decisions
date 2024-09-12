@@ -12,6 +12,7 @@ pytz = "^2024.2"
 pandas = "^2.2.2"
 pydantic = "^2.9.1"
 python-dotenv = "^1.0.1"
+schedule = "^1.2.2"
 
 
 [build-system]
