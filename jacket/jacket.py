@@ -209,6 +209,9 @@ This script helps you decide what jacket to wear based on weather data.
 - **Recommended Jacket Type**: {jacket}
 - **Take a Rain Jacket?**: {rain_jacket}
 
+## Weather Forecast
+{df.to_markdown()}
+
 """
 
 # Path to the README.md file
