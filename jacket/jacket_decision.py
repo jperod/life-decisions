@@ -134,36 +134,36 @@ class MyJacketDecisionMaker:
             return JacketDecision.LIGHT_JACKET
 
 
-def update_jacket_markdown(
-    file_path: str, jacket: str, rain_jacket: str, df: pd.DataFrame
-):
-    """Updates the target markdown file with weather-related content.
+    def update_jacket_markdown(
+        self, file_path: str, jacket: str, rain_jacket: str, df: pd.DataFrame
+    ):
+        """Updates the target markdown file with weather-related content.
 
-    Args:
-        file_path (str): Path to the markdown file to update (e.g., "README.md").
-        jacket (str): Recommended jacket type.
-        rain_jacket (str): Whether or not a rain jacket is needed.
-        df (pd.DataFrame): Weather forecast data as a DataFrame.
-    """
+        Args:
+            file_path (str): Path to the markdown file to update (e.g., "README.md").
+            jacket (str): Recommended jacket type.
+            rain_jacket (str): Whether or not a rain jacket is needed.
+            df (pd.DataFrame): Weather forecast data as a DataFrame.
+        """
 
-    # Define the content to be written into the markdown file
-    readme_content = f"""
-# Copenhagen Jacket Decision Maker
+        # Define the content to be written into the markdown file
+        readme_content = f"""
+    # Copenhagen Jacket Decision Maker
 
-Danish weather is very uncertain, so I made this code to help me decide what jacket to wear based on weather data.
+    Danish weather is very uncertain, so I made this code to help me decide what jacket to wear based on weather data.
 
-## What Jacket to wear?
+    ## What Jacket to wear?
 
-- **Datetime**: {get_now_cph_str()}
-- **Recommended Jacket Type**: {jacket}
-- **Take a Rain Jacket?** {rain_jacket}
+    - **Datetime**: {get_now_cph_str()}
+    - **Recommended Jacket Type**: {jacket}
+    - **Take a Rain Jacket?** {rain_jacket}
 
-## Weather Forecast
-{df.to_markdown(index=False).strip()}
-    """
+    ## Weather Forecast
+    {df.to_markdown(index=False).strip()}
+        """
 
-    # Write content to the specified file
-    with open(file_path, "w") as file:
-        file.write(readme_content)
+        # Write content to the specified file
+        with open(file_path, "w") as file:
+            file.write(readme_content)
 
-    print(f"Content written to {file_path}")
+        print(f"Content written to {file_path}")

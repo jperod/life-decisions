@@ -15,9 +15,9 @@ from common.weather_utils import (
     classify_wind_intensity,
     ForecastDataRow,
 )
-from common.utils import run_command, get_now_cph
+from common.utils import GitUtils
 from integrations.openweathermap import OpenWeatherMapApi
-from jacket.jacket_decision import MyJacketDecisionMaker, update_jacket_markdown
+from jacket.jacket_decision import MyJacketDecisionMaker
 
 
 openweather_api = OpenWeatherMapApi()
@@ -67,18 +67,6 @@ jdm = MyJacketDecisionMaker(rows, verbose=True)
 jacket = jdm.decide_jacket()
 rain_jacket = jdm.should_take_rain_jacket()
 
-
-update_jacket_markdown("what-jacket-to-wear.md", jacket, rain_jacket, df)
-
-
-# Git operations
-
-run_command("git add README.md")
-run_command("git pull origin")
-try:
-    run_command('git commit -m "Auto Update README.md with latest information"')
-    run_command("git push origin main")
-except:
-    print("No changes to commit.")
-
-print("Done.")
+markdown_file_path = "what-jacket-to-wear.md"
+jdm.update_jacket_markdown(markdown_file_path, jacket, rain_jacket, df)
+GitUtils.add_commit_push(markdown_file_path)
