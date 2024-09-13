@@ -15,7 +15,7 @@ from common.weather_utils import (
     classify_wind_intensity,
     ForecastDataRow,
 )
-from common.utils import run_command
+from common.utils import run_command, get_now_cph
 from integrations.openweathermap import OpenWeatherMapApi
 from jacket.jacket_decision import MyJacketDecisionMaker, update_jacket_markdown
 
@@ -69,31 +69,6 @@ rain_jacket = jdm.should_take_rain_jacket()
 
 
 update_jacket_markdown("what-jacket-to-wear.md", jacket, rain_jacket, df)
-
-# # Define the content to be written
-# readme_content = f"""# Copenhagen Jacket Decision Maker
-
-# Danish weather is very uncertain, so I made this code to help me decide what jacket to wear based on weather data.
-
-# ## What Jacket to wear?
-
-# - **Datetime**: {get_now_cph_str()}
-# - **Recommended Jacket Type**: {jacket}
-# - **Take a Rain Jacket?** {rain_jacket}
-
-# ## Weather Forecast
-# {df.to_markdown(index=False)}
-
-# """
-
-# # Path to the README.md file
-# file_path = "README.md"
-
-# # Write content to the file
-# with open(file_path, "w") as file:
-#     file.write(readme_content)
-
-# print(f"Content written to {file_path}")
 
 
 # Git operations
