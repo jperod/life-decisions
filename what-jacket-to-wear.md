@@ -8,7 +8,7 @@ Danish weather is very uncertain, so I made this code to help me decide what jac
 - **Datetime**: 2024-09-13 08:42
 - **Recommended Jacket Type**: Regular Jacket and T-Shirt
 - **Take a Rain Jacket?** No
-- **Take Gloves?** GlovesDecision.NO
+- **Take Gloves?** No
 
 ## Weather Forecast
 | datetime_cph     |   deg_c |   deg_c_min |   deg_c_max |   deg_c_feels | weather   | wind   | rain   |
