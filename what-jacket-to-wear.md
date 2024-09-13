@@ -5,16 +5,16 @@
 
     ## What Jacket to wear?
 
-    - **Datetime**: 2024-09-13 07:51
+    - **Datetime**: 2024-09-13 08:11
     - **Recommended Jacket Type**: Regular Jacket and T-Shirt
     - **Take a Rain Jacket?** No
 
     ## Weather Forecast
     | datetime_cph     |   deg_c |   deg_c_min |   deg_c_max |   deg_c_feels | weather   | wind   | rain   |
 |:-----------------|--------:|------------:|------------:|--------------:|:----------|:-------|:-------|
-| 2024-09-13 08:00 |   10.96 |       10.96 |       12.74 |         10.38 | Clouds    | Low    | None   |
-| 2024-09-13 11:00 |   12.33 |       12.33 |       15.08 |         11.6  | Clouds    | Medium | None   |
-| 2024-09-13 14:00 |   13.85 |       13.85 |       15.29 |         12.91 | Clouds    | Medium | None   |
+| 2024-09-13 11:00 |   12.26 |       12.26 |       15.08 |         11.53 | Clouds    | Medium | None   |
+| 2024-09-13 14:00 |   13.81 |       13.81 |       15.29 |         12.87 | Clouds    | Medium | None   |
 | 2024-09-13 17:00 |   14.65 |       14.65 |       14.65 |         13.5  | Clouds    | Medium | None   |
 | 2024-09-13 20:00 |   13.96 |       13.96 |       13.96 |         12.95 | Clouds    | Medium | None   |
+| 2024-09-13 23:00 |   13    |       13    |       13    |         11.92 | Clouds    | Medium | None   |
         
