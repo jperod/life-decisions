@@ -7,16 +7,18 @@ SET "PYTON_VERSION=python3.12"
 SET "ORCHESTRATION_SCRIPT=orchestrator.py"
 SET "POETRY_INSTALL_CMD=poetry install"
 
-REM Check if virtual environment exists
-IF NOT EXIST "%VENV_DIR%" (
-    echo Creating virtual environment...
-    %PYTON_VERSION% -m venv %VENV_DIR%
+IF EXIST "%VENV_DIR%" (
+    echo Deleting existing virtual environment...
+    rmdir /s /q "%VENV_DIR%"
 )
+
+echo Creating virtual environment...
+%PYTHON_VERSION% -m venv %VENV_DIR%
 
 echo Activate virtual environment
 CALL %VENV_DIR%\Scripts\activate
 
-echo Install Poetry 
+echo Installing Poetry and dependencies...
 pip install poetry
 poetry install
 
