@@ -35,6 +35,11 @@ class JacketDecision:
     TSHIRT = "T-Shirt"
 
 
+class GlovesDecision(Enum):
+    NO = "No"
+    YES = "YES"
+
+
 class MyJacketDecisionMaker:
 
     def __init__(self, forecast: List[ForecastDataRow], verbose: bool = False) -> None:
@@ -133,9 +138,46 @@ class MyJacketDecisionMaker:
                 print("It's will be hot and chilly, take a light jacket")
             return JacketDecision.LIGHT_JACKET
 
+    def decide_gloves(self) -> str:
+        # Initialize temperature counters
+        total_feels_like_temp = 0
+        min_temp = -20
+        count = 0
+
+        # Iterate over weather data to compute averages and minimums
+        for entry in self.forecast:
+            if "deg_c_feels" in entry:
+                total_feels_like_temp += entry["deg_c_feels"]
+                min_temp = min(min_temp, entry["deg_c_min"])
+                count += 1
+
+        # Calculate average feels-like temperature
+        if count == 0:
+            return GlovesDecision.NO  # No data available
+
+        avg_feels_like_temp = total_feels_like_temp / count
+
+        # Decision logic
+        if avg_feels_like_temp <= 0:
+            if self.verbose:
+                print("Wear warm gloves, it's very cold!")
+            return GlovesDecision.YES.value
+        elif avg_feels_like_temp <= 5:
+            if self.verbose:
+                print("Wear gloves, it's cold but manageable.")
+            return GlovesDecision.YES.value
+        else:
+            if self.verbose:
+                print("No need for gloves today.")
+            return GlovesDecision.NO.value
 
     def update_jacket_markdown(
-        self, file_path: str, jacket: str, rain_jacket: str, df: pd.DataFrame
+        self,
+        file_path: str,
+        jacket: str,
+        rain_jacket: str,
+        gloves: str,
+        df: pd.DataFrame,
     ):
         """Updates the target markdown file with weather-related content.
 
@@ -143,23 +185,25 @@ class MyJacketDecisionMaker:
             file_path (str): Path to the markdown file to update (e.g., "README.md").
             jacket (str): Recommended jacket type.
             rain_jacket (str): Whether or not a rain jacket is needed.
+            gloves (str): Whether gloves are needed.
             df (pd.DataFrame): Weather forecast data as a DataFrame.
         """
 
         # Define the content to be written into the markdown file
         readme_content = f"""
-    # Copenhagen Jacket Decision Maker
+# Copenhagen Jacket Decision Maker
 
-    Danish weather is very uncertain, so I made this code to help me decide what jacket to wear based on weather data.
+Danish weather is very uncertain, so I made this code to help me decide what jacket to wear based on weather data.
 
-    ## What Jacket to wear?
+## What Jacket to wear?
 
-    - **Datetime**: {get_now_cph_str()}
-    - **Recommended Jacket Type**: {jacket}
-    - **Take a Rain Jacket?** {rain_jacket}
+- **Datetime**: {get_now_cph_str()}
+- **Recommended Jacket Type**: {jacket}
+- **Take a Rain Jacket?** {rain_jacket}
+- **Take Gloves?** {gloves}
 
-    ## Weather Forecast
-    {df.to_markdown(index=False).strip()}
+## Weather Forecast
+{df.to_markdown(index=False).strip()}
         """
 
         # Write content to the specified file

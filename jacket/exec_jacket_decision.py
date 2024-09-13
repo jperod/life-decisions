@@ -54,7 +54,6 @@ for i, ele in enumerate(list_data[0:5]):
         deg_c_feels=deg_c_feels,
         weather=weather,
         wind=wind,
-        # wind_speed=wind_speed,
         rain=rain_3h_intensity,
     )
     rows.append(row.model_dump())
@@ -66,7 +65,8 @@ print(df)
 jdm = MyJacketDecisionMaker(rows, verbose=True)
 jacket = jdm.decide_jacket()
 rain_jacket = jdm.should_take_rain_jacket()
+gloves = jdm.decide_gloves()
 
 markdown_file_path = "what-jacket-to-wear.md"
-jdm.update_jacket_markdown(markdown_file_path, jacket, rain_jacket, df)
+jdm.update_jacket_markdown(markdown_file_path, jacket, rain_jacket, gloves, df)
 GitUtils.add_commit_push(markdown_file_path)
