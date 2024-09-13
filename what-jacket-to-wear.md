@@ -5,7 +5,7 @@
 
     ## What Jacket to wear?
 
-    - **Datetime**: 2024-09-13 08:21
+    - **Datetime**: 2024-09-13 08:30
     - **Recommended Jacket Type**: Regular Jacket and T-Shirt
     - **Take a Rain Jacket?** No
 
