@@ -23,4 +23,6 @@ echo Running orchestration script...
 python %ORCHESTRATION_SCRIPT%
 
 
+echo Done.
 ENDLOCAL
+pause
