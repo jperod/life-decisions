@@ -1,27 +1,12 @@
 """module to decide which jacket to wear based on weather data"""
 
-import sys
-import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 from enum import Enum
-import pandas as pd
 from pydantic import BaseModel
 from typing import List
 import datetime
-import pytz
-import subprocess
-from common.weather_utils import (
-    kelvin_to_celsius,
-    classify_rain_intensity_3h,
-    classify_wind_intensity,
-)
-from integrations.openweathermap import OpenWeatherMapApi
-
-
 from typing import Optional, Literal
-
+import pandas as pd
+from common.utils import get_now_cph_str
 
 class ForecastDataRow(BaseModel):
     datetime_cph: datetime.datetime  # You can use `datetime` type if you prefer
@@ -146,101 +131,35 @@ class MyJacketDecisionMaker:
             return JacketDecision.LIGHT_JACKET
 
 
-openweather_api = OpenWeatherMapApi()
+def update_jacket_markdown(file_path: str, jacket: str, rain_jacket: str, df: pd.DataFrame):
+    """Updates the target markdown file with weather-related content.
+    
+    Args:
+        file_path (str): Path to the markdown file to update (e.g., "README.md").
+        jacket (str): Recommended jacket type.
+        rain_jacket (str): Whether or not a rain jacket is needed.
+        df (pd.DataFrame): Weather forecast data as a DataFrame.
+    """
 
+    # Define the content to be written into the markdown file
+    readme_content = f"""
+    # Copenhagen Jacket Decision Maker
 
-CITY = "Copenhagen"
-data = openweather_api.get_forecast_by_city(CITY)
+    Danish weather is very uncertain, so I made this code to help me decide what jacket to wear based on weather data.
 
+    ## What Jacket to wear?
 
-list_data = data["list"]
-rows = []
-for i, ele in enumerate(list_data[0:5]):
+    - **Datetime**: {get_now_cph_str()}
+    - **Recommended Jacket Type**: {jacket}
+    - **Take a Rain Jacket?** {rain_jacket}
 
-    if i == 0:
-        print(ele)
-    utc_datetime = datetime.datetime.fromtimestamp(
-        ele["dt"], tz=datetime.timezone.utc
-    ).astimezone(pytz.timezone("Europe/Copenhagen"))
-    print(utc_datetime)
-    deg_c = kelvin_to_celsius(ele["main"]["temp"])
-    deg_c_min = kelvin_to_celsius(ele["main"]["temp_min"])
-    deg_c_max = kelvin_to_celsius(ele["main"]["temp_max"])
-    deg_c_feels = kelvin_to_celsius(ele["main"]["feels_like"])
-    weather = ele["weather"][0]["main"]
-    wind_speed = ele["wind"]["speed"]
-    wind_gust = ele["wind"]["gust"]
-    wind = classify_wind_intensity(wind_speed, wind_gust)
-    rain_3h_intensity = (
-        classify_rain_intensity_3h(ele["rain"]["3h"]) if "rain" in ele else "None"
-    )
+    ## Weather Forecast
 
-    row = ForecastDataRow(
-        datetime_cph=utc_datetime,
-        deg_c=deg_c,
-        deg_c_min=deg_c_min,
-        deg_c_max=deg_c_max,
-        deg_c_feels=deg_c_feels,
-        weather=weather,
-        wind=wind,
-        # wind_speed=wind_speed,
-        rain=rain_3h_intensity,
-    )
-    rows.append(row.model_dump())
+    {df.to_markdown(index=False)}
+    """
 
-df = pd.DataFrame(rows)
-df["datetime_cph"] = df["datetime_cph"].dt.strftime("%Y-%m-%d %H:%M")
-print(df)
+    # Write content to the specified file
+    with open(file_path, "w") as file:
+        file.write(readme_content)
 
-jdm = MyJacketDecisionMaker(rows, verbose=True)
-jacket = jdm.decide_jacket()
-print(jacket)
-rain_jacket = jdm.should_take_rain_jacket()
-print(rain_jacket)
-
-
-# Define the content to be written
-readme_content = f"""# Copenhagen Jacket Decision Maker
-
-Danish weather is very uncertain, so I made this code to help me decide what jacket to wear based on weather data.
-
-## What Jacket to wear?
-
-- **Datetime**: {datetime.datetime.now().astimezone(pytz.timezone("Europe/Copenhagen")).strftime("%Y-%m-%d %H:%M")}
-- **Recommended Jacket Type**: {jacket}
-- **Take a Rain Jacket?** {rain_jacket}
-
-## Weather Forecast
-{df.to_markdown(index=False)}
-
-"""
-
-# Path to the README.md file
-file_path = 'README.md'
-
-# Write content to the file
-with open(file_path, 'w') as file:
-    file.write(readme_content)
-
-print(f'Content written to {file_path}')
-
-
-# Define a function to run a command and capture its output
-def run_command(command):
-    result = subprocess.run(command, shell=True, text=True, capture_output=True)
-    if result.returncode == 0:
-        print(result.stdout)
-    else:
-        raise SystemError(f"Error: {result.stderr}")
-
-# Git operations
-
-run_command('git add .')
-run_command('git pull origin')
-try:
-    run_command('git commit -m "Auto Update README.md with latest information"')
-    run_command('git push origin main')
-except:
-    print("No changes to commit.")
-
-print("Done.")
+    print(f"Content written to {file_path}")

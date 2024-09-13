@@ -1,5 +1,21 @@
 """common utilities related to dealing with weather data and operations"""
 
+from pydantic import BaseModel
+from typing import Literal, Optional
+import datetime
+import pytz
+
+class ForecastDataRow(BaseModel):
+    datetime_cph: datetime.datetime  # You can use `datetime` type if you prefer
+    deg_c: float
+    deg_c_min: float
+    deg_c_max: float
+    deg_c_feels: float
+    weather: str
+    wind: Literal["Low", "Medium", "High", "None"]
+    # wind_speed: float
+    rain: Optional[Literal["Low", "Medium", "High", "None"]]
+
 
 def fahrenheit_to_celsius(fahrenheit:float):
     """

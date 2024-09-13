@@ -11,7 +11,7 @@ now_cph = {datetime.datetime.now().astimezone(pytz.timezone("Europe/Copenhagen")
 def calculate_jacket_decision():
     print(f"Executing job `calculate_jacket_decision` at {now_cph}")
     venv_python_path = os.path.join(os.path.dirname(sys.executable), 'python')
-    script_path = r"C:\Repos\life-decisions\jacket\jacket.py"
+    script_path = r"C:\Repos\life-decisions\jacket\exec_jacket_decision.py"
     subprocess.run([venv_python_path, script_path])
 
 # Schedule the job every 20 minutes
