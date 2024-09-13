@@ -5,7 +5,7 @@ Danish weather is very uncertain, so I made this code to help me decide what jac
 
 ## What Jacket to wear?
 
-- **Datetime**: 2024-09-13 21:21
+- **Datetime**: 2024-09-13 21:36
 - **Recommended Jacket Type**: Regular Jacket with Warm Layers
 - **Take a Rain Jacket?** No
 - **Take Gloves?** No
@@ -13,9 +13,9 @@ Danish weather is very uncertain, so I made this code to help me decide what jac
 ## Weather Forecast
 | datetime_cph     |   deg_c |   deg_c_min |   deg_c_max |   deg_c_feels | weather   | wind   | rain   |
 |:-----------------|--------:|------------:|------------:|--------------:|:----------|:-------|:-------|
-| 2024-09-13 23:00 |   11.92 |       11.92 |       13.01 |         10.89 | Clouds    | Medium | None   |
-| 2024-09-14 02:00 |   12.29 |       12.29 |       12.74 |         11.3  | Clouds    | Medium | None   |
-| 2024-09-14 05:00 |   12.43 |       12.43 |       12.43 |         11.45 | Clouds    | Medium | None   |
+| 2024-09-13 23:00 |   11.4  |       11.4  |       13.01 |         10.4  | Clouds    | Medium | None   |
+| 2024-09-14 02:00 |   11.85 |       11.85 |       12.74 |         10.84 | Clouds    | Medium | None   |
+| 2024-09-14 05:00 |   12.09 |       12.09 |       12.43 |         11.1  | Clouds    | Medium | None   |
 | 2024-09-14 08:00 |   12.48 |       12.48 |       12.48 |         11.48 | Clouds    | Medium | None   |
 | 2024-09-14 11:00 |   15.07 |       15.07 |       15.07 |         14.02 | Clear     | Medium | None   |
         
