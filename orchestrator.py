@@ -15,7 +15,7 @@ def calculate_jacket_decision():
     subprocess.run([venv_python_path, script_path])
 
 # Schedule the job every 20 minutes
-schedule.every(15).minutes.do(calculate_jacket_decision)
+schedule.every(5).minutes.do(calculate_jacket_decision)
 
 calculate_jacket_decision()
 while True: 
