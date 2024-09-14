@@ -92,6 +92,28 @@ class MyJacketDecisionMaker:
             return RainJacketDecision.OPTIONAL.value
 
         return RainJacketDecision.NO.value
+    
+    def calculate_avg_feels_temperature(self) -> float:
+        """calculate avg feels like temperature in celcius"""
+        # Initialize temperature counters
+        total_feels_like_temp = 0
+        min_temp = -20
+        count = 0
+
+        # Iterate over weather data to compute averages and minimums
+        for entry in self.forecast:
+            total_feels_like_temp += entry["deg_c_feels"]
+            min_temp = min(min_temp, entry["deg_c_min"])
+            count += 1
+
+        # Calculate average feels-like temperature
+        if count == 0:
+            return JacketDecision.NO_JACKET  # No data available
+
+        avg_feels_like_temp = round(total_feels_like_temp / count,1)
+        print(f"avg_feels_like_temp = {avg_feels_like_temp} C")
+        return avg_feels_like_temp
+
 
     def decide_jacket(self) -> str:
         # Initialize temperature counters
@@ -101,27 +123,26 @@ class MyJacketDecisionMaker:
 
         # Iterate over weather data to compute averages and minimums
         for entry in self.forecast:
-            if "deg_c_feels" in entry:
-                total_feels_like_temp += entry["deg_c_feels"]
-                min_temp = min(min_temp, entry["deg_c_min"])
-                count += 1
+            total_feels_like_temp += entry["deg_c_feels"]
+            min_temp = min(min_temp, entry["deg_c_min"])
+            count += 1
 
         # Calculate average feels-like temperature
         if count == 0:
             return JacketDecision.NO_JACKET  # No data available
 
-        avg_feels_like_temp = total_feels_like_temp / count
+        avg_feels_like_temp = round(total_feels_like_temp / count,1)
 
         # Decision logic
         if avg_feels_like_temp < 6:
             if self.verbose:
                 print("Take a warm jacket, it's cold!")
             return JacketDecision.WARM_JACKET
-        elif avg_feels_like_temp < 12:
+        elif avg_feels_like_temp < 13:
             if self.verbose:
                 print("Take a regular jacket, with layers inside!")
             return JacketDecision.REGULAR_JACKET_w_LAYERS
-        elif avg_feels_like_temp < 17:
+        elif avg_feels_like_temp < 17.5:
             if self.verbose:
                 print("Take a regular jacket with shirt")
             return JacketDecision.REGULAR_JACKET
@@ -162,7 +183,7 @@ class MyJacketDecisionMaker:
             if self.verbose:
                 print("Wear warm gloves, it's very cold!")
             return GlovesDecision.YES.value
-        elif avg_feels_like_temp <= 5:
+        elif avg_feels_like_temp <= 8:
             if self.verbose:
                 print("Wear gloves, it's cold but manageable.")
             return GlovesDecision.YES.value
@@ -177,6 +198,7 @@ class MyJacketDecisionMaker:
         jacket: str,
         rain_jacket: str,
         gloves: str,
+        avg_feels_temp: float,
         df: pd.DataFrame,
     ):
         """Updates the target markdown file with weather-related content.
@@ -203,11 +225,12 @@ Danish weather is very uncertain, so I made this code to help me decide what jac
 - **Take Gloves?** {gloves}
 
 ## Weather Forecast
+- Average Feels Like Temperature: {avg_feels_temp} °C
 {df.to_markdown(index=False).strip()}
         """
 
         # Write content to the specified file
-        with open(file_path, "w") as file:
+        with open(file_path, "w", encoding="utf-8") as file:
             file.write(readme_content)
 
         print(f"Content written to {file_path}")
