@@ -10,15 +10,23 @@ SET "ORCHESTRATION_SCRIPT=orchestrator.py"
 REM Output Python version for debugging
 echo Python version being used: %PYTHON_VERSION%
 
+
 REM Check if virtual environment exists and delete if it does
 IF EXIST "%VENV_DIR%" (
     echo Deleting existing virtual environment...
     rmdir /s /q "%VENV_DIR%"
+    
+    REM wait 5 seconds
+    timeout /t 5 /nobreak
 )
 
 REM Create virtual environment
 echo Creating virtual environment with %PYTHON_VERSION%...
 %PYTHON_VERSION% -m venv %VENV_DIR%
+
+REM Add a custom step to modify the activate script after creating the virtual environment
+echo Modifying activate.bat to include current working directory in PYTHONPATH...
+echo set PYTHONPATH=%PYTHONPATH%;%CD%>> %VENV_DIR%\Scripts\activate.bat
 
 REM Activate virtual environment
 echo Activating virtual environment...

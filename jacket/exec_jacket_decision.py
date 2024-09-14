@@ -1,14 +1,8 @@
 """module to decide which jacket to wear based on weather data"""
 
-import sys
-import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 import pandas as pd
 import datetime
 import pytz
-import subprocess
 from common.weather_utils import (
     kelvin_to_celsius,
     classify_rain_intensity_3h,
@@ -66,7 +60,8 @@ jdm = MyJacketDecisionMaker(rows, verbose=True)
 jacket = jdm.decide_jacket()
 rain_jacket = jdm.should_take_rain_jacket()
 gloves = jdm.decide_gloves()
+avg_feels_temp = jdm.calculate_avg_feels_temperature()
 
 markdown_file_path = "what-jacket-to-wear.md"
-jdm.update_jacket_markdown(markdown_file_path, jacket, rain_jacket, gloves, df)
+jdm.update_jacket_markdown(markdown_file_path, jacket, rain_jacket, gloves, avg_feels_temp, df)
 GitUtils.add_commit_push(markdown_file_path)
