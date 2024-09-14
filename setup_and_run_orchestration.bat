@@ -1,4 +1,5 @@
 @echo off
+TITLE Life Decisions Orchestration 
 SETLOCAL ENABLEDELAYEDEXPANSION
 
 REM Set variables
