@@ -2,7 +2,7 @@
 # Copenhagen Jacket Decision Maker
 
 Danish weather is very uncertain, so I made this app to help me decide what jacket to wear based on weather data. 
-It also help me know when to take gloves or when to be prepared and take a rain jacket.
+It also help me know when it gets cold enough to take gloves or I should be prepared for rain.
 
 ## What Jacket to wear?
 
