@@ -92,7 +92,7 @@ class MyJacketDecisionMaker:
             return RainJacketDecision.OPTIONAL.value
 
         return RainJacketDecision.NO.value
-    
+
     def calculate_avg_feels_temperature(self) -> float:
         """calculate avg feels like temperature in celcius"""
         # Initialize temperature counters
@@ -110,10 +110,9 @@ class MyJacketDecisionMaker:
         if count == 0:
             return JacketDecision.NO_JACKET  # No data available
 
-        avg_feels_like_temp = round(total_feels_like_temp / count,1)
+        avg_feels_like_temp = round(total_feels_like_temp / count, 1)
         print(f"avg_feels_like_temp = {avg_feels_like_temp} C")
         return avg_feels_like_temp
-
 
     def decide_jacket(self) -> str:
         # Initialize temperature counters
@@ -131,7 +130,7 @@ class MyJacketDecisionMaker:
         if count == 0:
             return JacketDecision.NO_JACKET  # No data available
 
-        avg_feels_like_temp = round(total_feels_like_temp / count,1)
+        avg_feels_like_temp = round(total_feels_like_temp / count, 1)
 
         # Decision logic
         if avg_feels_like_temp < 6:
@@ -215,7 +214,8 @@ class MyJacketDecisionMaker:
         readme_content = f"""
 # Copenhagen Jacket Decision Maker
 
-Danish weather is very uncertain, so I made this code to help me decide what jacket to wear based on weather data.
+Danish weather is very uncertain, so I made this app to help me decide what jacket to wear based on weather data. 
+It also help me know when it gets cold enough to take gloves or when I should be prepared for rain.
 
 ## What Jacket to wear?
 
@@ -225,7 +225,8 @@ Danish weather is very uncertain, so I made this code to help me decide what jac
 - **Take Gloves?** {gloves}
 
 ## Weather Forecast
-- Average Feels Like Temperature: {avg_feels_temp} °C
+- Avg Feels Like Temperature: {avg_feels_temp} °C
+
 {df.to_markdown(index=False).strip()}
         """
 
