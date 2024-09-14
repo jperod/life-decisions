@@ -18,6 +18,6 @@ def calculate_jacket_decision():
 schedule.every(15).minutes.do(calculate_jacket_decision)
 
 calculate_jacket_decision()
-while True:
+while True: 
     schedule.run_pending()
     time.sleep(1)  # Sleep for 5 minutes to prevent high CPU usage
