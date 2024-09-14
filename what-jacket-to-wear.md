@@ -1,11 +1,12 @@
 
 # Copenhagen Jacket Decision Maker
 
-Danish weather is very uncertain, so I made this code to help me decide what jacket to wear based on weather data.
+Danish weather is very uncertain, so I made this app to help me decide what jacket to wear based on weather data. 
+It also help me know when to take gloves or when to be prepared and take a rain jacket.
 
 ## What Jacket to wear?
 
-- **Datetime**: 2024-09-14 21:51
+- **Datetime**: 2024-09-14 21:53
 - **Recommended Jacket Type**: Regular Jacket with Warm Layers
 - **Take a Rain Jacket?** No
 - **Take Gloves?** No
