@@ -5,13 +5,13 @@ Danish weather is very uncertain, so I made this code to help me decide what jac
 
 ## What Jacket to wear?
 
-- **Datetime**: 2024-09-14 21:48
+- **Datetime**: 2024-09-14 21:49
 - **Recommended Jacket Type**: Regular Jacket with Warm Layers
 - **Take a Rain Jacket?** No
 - **Take Gloves?** No
 
 ## Weather Forecast
-_Average Feels Like Temperature: 11.8 °C_
+_Average Feels Like Temperature: 11.8 Â°C_
 | datetime_cph     |   deg_c |   deg_c_min |   deg_c_max |   deg_c_feels | weather   | wind   | rain   |
 |:-----------------|--------:|------------:|------------:|--------------:|:----------|:-------|:-------|
 | 2024-09-14 23:00 |   11.74 |       11.74 |       13.03 |         10.93 | Clear     | Medium | None   |
