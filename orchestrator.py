@@ -14,7 +14,7 @@ def calculate_jacket_decision():
     script_path = r"C:\Repos\life-decisions\jacket\exec_jacket_decision.py"
     subprocess.run([venv_python_path, script_path])
 
-# Schedule the job every 20 minutes
+# Schedule the job every 5 minutes
 schedule.every(5).minutes.do(calculate_jacket_decision)
 
 calculate_jacket_decision()
