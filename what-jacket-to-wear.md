@@ -11,13 +11,13 @@ Danish weather is very uncertain, so I made this code to help me decide what jac
 - **Take Gloves?** No
 
 ## Weather Forecast
-- Average Feels Like Temperature: 11.8 °C
+- Avg Feels Like Temperature: 11.8 °C
 
 | datetime_cph     |   deg_c |   deg_c_min |   deg_c_max |   deg_c_feels | weather   | wind   | rain   |
 |:-----------------|--------:|------------:|------------:|--------------:|:----------|:-------|:-------|
-| 2024-09-14 23:00 |   11.74 |       11.74 |       13.03 |         10.93 | Clear     | Medium | None   |
+| 2024-09-14 23:00 |   11.73 |       11.73 |       13.03 |         10.92 | Clear     | Medium | None   |
 | 2024-09-15 02:00 |   12.05 |       12.05 |       12.68 |         11.19 | Clear     | Low    | None   |
-| 2024-09-15 05:00 |   12.07 |       12.07 |       12.23 |         11.26 | Clear     | Low    | None   |
+| 2024-09-15 05:00 |   12.06 |       12.06 |       12.23 |         11.25 | Clear     | Low    | None   |
 | 2024-09-15 08:00 |   12.35 |       12.35 |       12.35 |         11.65 | Clear     | Low    | None   |
 | 2024-09-15 11:00 |   14.95 |       14.95 |       14.95 |         14.12 | Clouds    | Low    | None   |
         
