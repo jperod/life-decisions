@@ -6,7 +6,7 @@ It also help me know when it gets cold enough to take gloves or when I should be
 
 ## What Jacket to wear?
 
-- **Datetime**: 2024-09-21 10:39
+- **Datetime**: 2024-09-21 10:44
 - **Recommended Jacket Type**: Regular Jacket and T-Shirt
 - **Take a Rain Jacket?** No
 - **Take Gloves?** No
@@ -16,7 +16,7 @@ It also help me know when it gets cold enough to take gloves or when I should be
 
 | datetime_cph     |   deg_c |   deg_c_min |   deg_c_max |   deg_c_feels | weather   | wind   | rain   |
 |:-----------------|--------:|------------:|------------:|--------------:|:----------|:-------|:-------|
-| 2024-09-21 11:00 |   16.69 |       16.69 |       18.33 |         16.56 | Clouds    | Low    | None   |
+| 2024-09-21 11:00 |   16.7  |       16.7  |       18.33 |         16.57 | Clouds    | Low    | None   |
 | 2024-09-21 14:00 |   17.78 |       17.78 |       19.95 |         17.55 | Clouds    | Low    | None   |
 | 2024-09-21 17:00 |   18.63 |       18.63 |       19.6  |         18.27 | Clouds    | Low    | None   |
 | 2024-09-21 20:00 |   18.07 |       18.07 |       18.07 |         17.71 | Clouds    | Low    | None   |
