@@ -6,8 +6,8 @@ It also help me know when it gets cold enough to take gloves or when I should be
 
 ## What Jacket to wear?
 
-- **Datetime**: 2024-09-24 07:29
-- **Recommended Jacket Type**: Regular Jacket and T-Shirt
+- **Datetime**: 2024-09-24 07:37
+- **Recommended Jacket Type**: Rain Jacket and T-shirt
 - **Take a Rain Jacket?** Yes
 - **Take Gloves?** No
 
