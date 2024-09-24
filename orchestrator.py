@@ -14,10 +14,9 @@ def calculate_jacket_decision():
     script_path = r"C:\Repos\life-decisions\jacket\exec_jacket_decision.py"
     subprocess.run([venv_python_path, script_path])
 
-# Schedule the job every 5 minutes
 schedule.every(5).minutes.do(calculate_jacket_decision)
 
 calculate_jacket_decision()
 while True: 
     schedule.run_pending()
-    time.sleep(1)  # Sleep for 5 minutes to prevent high CPU usage
+    time.sleep(1)  # Sleep for 1 sec to prevent high CPU usage
