@@ -11,7 +11,7 @@ from common.weather_utils import (
 )
 from common.utils import GitUtils
 from integrations.openweathermap import OpenWeatherMapApi
-from jacket.jacket_decision import MyJacketDecisionMaker
+from jacket.jacket_decision import MyJacketDecisionMaker, JacketDecision, RainJacketDecision
 
 
 openweather_api = OpenWeatherMapApi()
@@ -61,6 +61,14 @@ jacket = jdm.decide_jacket()
 rain_jacket = jdm.should_take_rain_jacket()
 gloves = jdm.decide_gloves()
 avg_feels_temp = jdm.calculate_avg_feels_temperature()
+
+# Overwrite with rain jacket
+if (jacket == JacketDecision.REGULAR_JACKET.value or jacket == JacketDecision.LIGHT_JACKET.value) and rain_jacket == RainJacketDecision.YES.value:
+    jacket = JacketDecision.REGULAR_RAIN_JACKET.value
+elif jacket == JacketDecision.REGULAR_JACKET_w_LAYERS.value and rain_jacket:
+    jacket = JacketDecision.REGULAR_RAIN_JACKET_w_LAYERS.value
+elif jacket == JacketDecision.WARM_JACKET.value and rain_jacket:
+    jacket = JacketDecision.WARM_RAIN_JACKET.value
 
 markdown_file_path = "what-jacket-to-wear.md"
 jdm.update_jacket_markdown(markdown_file_path, jacket, rain_jacket, gloves, avg_feels_temp, df)

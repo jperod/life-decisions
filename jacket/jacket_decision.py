@@ -27,10 +27,13 @@ class RainJacketDecision(Enum):
     YES = "Yes"
 
 
-class JacketDecision:
+class JacketDecision(Enum):
     WARM_JACKET = "Warm Jacket"
+    WARM_RAIN_JACKET = "Warm Rain Jacket"
     REGULAR_JACKET_w_LAYERS = "Regular Jacket with Warm Layers"
+    REGULAR_RAIN_JACKET_w_LAYERS = "Rain Jacket with Warm Layers"
     REGULAR_JACKET = "Regular Jacket and T-Shirt"
+    REGULAR_RAIN_JACKET = "Rain Jacket and T-shirt"
     LIGHT_JACKET = "T-shirt + Light Jacket"
     TSHIRT = "T-Shirt"
 
@@ -136,27 +139,27 @@ class MyJacketDecisionMaker:
         if avg_feels_like_temp < 6:
             if self.verbose:
                 print("Take a warm jacket, it's cold!")
-            return JacketDecision.WARM_JACKET
+            return JacketDecision.WARM_JACKET.value
         elif avg_feels_like_temp < 13:
             if self.verbose:
                 print("Take a regular jacket, with layers inside!")
-            return JacketDecision.REGULAR_JACKET_w_LAYERS
+            return JacketDecision.REGULAR_JACKET_w_LAYERS.value
         elif avg_feels_like_temp < 17.5:
             if self.verbose:
                 print("Take a regular jacket with shirt")
-            return JacketDecision.REGULAR_JACKET
+            return JacketDecision.REGULAR_JACKET.value
         elif avg_feels_like_temp < 20:
             if self.verbose:
                 print("No need to take jacket today")
-            return JacketDecision.LIGHT_JACKET
+            return JacketDecision.LIGHT_JACKET.value
         elif avg_feels_like_temp >= 20 and min_temp >= 18:
             if self.verbose:
                 print("It's hot today, a T-shirt will be all you need")
-            return JacketDecision.TSHIRT
+            return JacketDecision.TSHIRT.value
         else:
             if self.verbose:
                 print("It's will be hot and chilly, take a light jacket")
-            return JacketDecision.LIGHT_JACKET
+            return JacketDecision.LIGHT_JACKET.value
 
     def decide_gloves(self) -> str:
         # Initialize temperature counters
