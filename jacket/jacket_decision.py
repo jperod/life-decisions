@@ -140,7 +140,7 @@ class MyJacketDecisionMaker:
             if self.verbose:
                 print("Take a warm jacket, it's cold!")
             return JacketDecision.WARM_JACKET.value
-        elif avg_feels_like_temp < 13:
+        elif avg_feels_like_temp < 10:
             if self.verbose:
                 print("Take a regular jacket, with layers inside!")
             return JacketDecision.REGULAR_JACKET_w_LAYERS.value
