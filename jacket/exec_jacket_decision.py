@@ -65,9 +65,9 @@ avg_feels_temp = jdm.calculate_avg_feels_temperature()
 # Overwrite with rain jacket
 if (jacket == JacketDecision.REGULAR_JACKET.value or jacket == JacketDecision.LIGHT_JACKET.value) and rain_jacket == RainJacketDecision.YES.value:
     jacket = JacketDecision.REGULAR_RAIN_JACKET.value
-elif jacket == JacketDecision.REGULAR_JACKET_w_LAYERS.value and rain_jacket:
+elif jacket == JacketDecision.REGULAR_JACKET_w_LAYERS.value and rain_jacket == RainJacketDecision.YES.value:
     jacket = JacketDecision.REGULAR_RAIN_JACKET_w_LAYERS.value
-elif jacket == JacketDecision.WARM_JACKET.value and rain_jacket:
+elif jacket == JacketDecision.WARM_JACKET.value and rain_jacket == RainJacketDecision.YES.value:
     jacket = JacketDecision.WARM_RAIN_JACKET.value
 
 markdown_file_path = "what-jacket-to-wear.md"
