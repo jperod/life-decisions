@@ -1,18 +1,16 @@
 """module to decide which jacket to wear based on weather data"""
 
-import pandas as pd
 import datetime
-import pytz
-from common.weather_utils import (
-    kelvin_to_celsius,
-    classify_rain_intensity_3h,
-    classify_wind_intensity,
-    ForecastDataRow,
-)
-from common.utils import GitUtils
-from integrations.openweathermap import OpenWeatherMapApi
-from jacket.jacket_decision import MyJacketDecisionMaker, JacketDecision, RainJacketDecision
 
+import pandas as pd
+import pytz
+
+from common.utils import GitUtils
+from common.weather_utils import (ForecastDataRow, classify_rain_intensity_3h,
+                                  classify_wind_intensity, kelvin_to_celsius)
+from integrations.openweathermap import OpenWeatherMapApi
+from jacket.jacket_decision import (JacketDecision, MyJacketDecisionMaker,
+                                    RainJacketDecision)
 
 openweather_api = OpenWeatherMapApi()
 

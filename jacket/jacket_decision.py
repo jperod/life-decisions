@@ -1,11 +1,13 @@
 """module to decide which jacket to wear based on weather data"""
 
-from enum import Enum
-from pydantic import BaseModel
-from typing import List
 import datetime
-from typing import Optional, Literal
+import warnings
+from enum import Enum
+from typing import List, Literal, Optional
+
 import pandas as pd
+from pydantic import BaseModel
+
 from common.utils import get_now_cph_str
 
 
@@ -17,7 +19,6 @@ class ForecastDataRow(BaseModel):
     deg_c_feels: float
     weather: str
     wind: Literal["Low", "Medium", "High", "None"]
-    # wind_speed: float
     rain: Optional[Literal["Low", "Medium", "High", "None"]]
 
 
@@ -28,14 +29,17 @@ class RainJacketDecision(Enum):
 
 
 class JacketDecision(Enum):
+    # No Rain
     WARM_JACKET = "Warm Jacket"
-    WARM_RAIN_JACKET = "Warm Rain Jacket"
     REGULAR_JACKET_w_LAYERS = "Regular Jacket with Warm Layers"
-    REGULAR_RAIN_JACKET_w_LAYERS = "Rain Jacket with Warm Layers"
     REGULAR_JACKET = "Regular Jacket and T-Shirt"
-    REGULAR_RAIN_JACKET = "Rain Jacket and T-shirt"
     LIGHT_JACKET = "T-shirt + Light Jacket"
     TSHIRT = "T-Shirt"
+
+    # Rain Adaption
+    WARM_RAIN_JACKET = "Warm Rain Jacket"
+    REGULAR_RAIN_JACKET_w_LAYERS = "Rain Jacket with Warm Layers"
+    REGULAR_RAIN_JACKET = "Rain Jacket and T-shirt"
 
 
 class GlovesDecision(Enum):
@@ -49,6 +53,17 @@ class MyJacketDecisionMaker:
         self.forecast = forecast
         self.verbose = verbose
 
+    def validate_forecast_not_empty(self) -> None:
+
+        # Check if forecast is None or empty
+        if not self.forecast:
+            raise ValueError("Forecast data must not be empty or None. It must contain at least one row.")
+        
+        
+        # Check if forecast has different than 5 rows
+        if len(self.forecast) != 5:
+            warnings.warn(f"Warning: Forecast data contains {len(self.forecast)} rows, but 5 rows are expected.", UserWarning)
+
     def should_take_rain_jacket(self) -> str:
 
         # Initialize counters
@@ -56,6 +71,8 @@ class MyJacketDecisionMaker:
         rain_intensity_high = 0
         rain_intensity_medium = 0
         rain_intensity_low = 0
+
+        self.validate_forecast_not_empty()
 
         # Iterate over weather data
         for entry in self.forecast:
@@ -98,23 +115,23 @@ class MyJacketDecisionMaker:
 
     def calculate_avg_feels_temperature(self) -> float:
         """calculate avg feels like temperature in celcius"""
+
+        self.validate_forecast_not_empty()
+
+
         # Initialize temperature counters
         total_feels_like_temp = 0
-        min_temp = -20
         count = 0
 
         # Iterate over weather data to compute averages and minimums
         for entry in self.forecast:
             total_feels_like_temp += entry["deg_c_feels"]
-            min_temp = min(min_temp, entry["deg_c_min"])
             count += 1
 
         # Calculate average feels-like temperature
-        if count == 0:
-            return JacketDecision.NO_JACKET  # No data available
-
         avg_feels_like_temp = round(total_feels_like_temp / count, 1)
-        print(f"avg_feels_like_temp = {avg_feels_like_temp} C")
+        if self.verbose:
+            print(f"avg_feels_like_temp = {avg_feels_like_temp} C")
         return avg_feels_like_temp
 
     def decide_jacket(self) -> str:
@@ -123,6 +140,8 @@ class MyJacketDecisionMaker:
         min_temp = -20
         count = 0
 
+        self.validate_forecast_not_empty()
+        
         # Iterate over weather data to compute averages and minimums
         for entry in self.forecast:
             total_feels_like_temp += entry["deg_c_feels"]
@@ -167,6 +186,9 @@ class MyJacketDecisionMaker:
         min_temp = -20
         count = 0
 
+
+        self.validate_forecast_not_empty()
+        
         # Iterate over weather data to compute averages and minimums
         for entry in self.forecast:
             if "deg_c_feels" in entry:

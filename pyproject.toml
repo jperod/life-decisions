@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "life-decisions"
-version = "0.1.5"
+version = "0.1.6"
 description = ""
 authors = ["Pedro <p3dror@gmail.com>"]
 readme = "README.md"
@@ -14,6 +14,7 @@ pydantic = "^2.9.1"
 python-dotenv = "^1.0.1"
 schedule = "^1.2.2"
 tabulate = "^0.9.0"
+pytest = "^8.3.3"
 
 
 [build-system]
