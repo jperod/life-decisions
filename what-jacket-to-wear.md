@@ -6,19 +6,19 @@ It also help me know when it gets cold enough to take gloves or when I should be
 
 ## What Jacket to wear?
 
-- **Datetime**: 2024-10-03 07:55
-- **Recommended Jacket Type**: Regular Jacket with Warm Layers
+- **Datetime**: 2024-10-03 08:00
+- **Recommended Jacket Type**: Regular Jacket and T-Shirt
 - **Take a Rain Jacket?** No
 - **Take Gloves?** No
 
 ## Weather Forecast
-- Avg Feels Like Temperature: 9.0 °C
+- Avg Feels Like Temperature: 10.1 °C
 
 | datetime_cph     |   deg_c |   deg_c_min |   deg_c_max |   deg_c_feels | weather   | wind   | rain   |
 |:-----------------|--------:|------------:|------------:|--------------:|:----------|:-------|:-------|
-| 2024-10-03 08:00 |    8.08 |        8.08 |        9.06 |          4.54 | Clouds    | High   | None   |
-| 2024-10-03 11:00 |    8.98 |        8.98 |       10.79 |          5.82 | Clouds    | Medium | None   |
-| 2024-10-03 14:00 |   11.61 |       11.61 |       13.37 |         10.45 | Clear     | Medium | None   |
+| 2024-10-03 11:00 |    9    |        9    |       10.79 |          5.85 | Clouds    | Medium | None   |
+| 2024-10-03 14:00 |   11.62 |       11.62 |       13.37 |         10.46 | Clear     | Medium | None   |
 | 2024-10-03 17:00 |   13.97 |       13.97 |       13.97 |         12.75 | Clear     | Medium | None   |
 | 2024-10-03 20:00 |   12.34 |       12.34 |       12.34 |         11.25 | Clear     | Low    | None   |
+| 2024-10-03 23:00 |   11.04 |       11.04 |       11.04 |          9.95 | Clear     | Low    | None   |
         
