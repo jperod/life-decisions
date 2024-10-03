@@ -1,5 +1,5 @@
 # Set variables
-$PROJECT_DIR = "C:\Repos\jperod\ld"
+$PROJECT_DIR = "C:\Repos\life-decisions"
 $VENV_DIR = "$PROJECT_DIR\.venv"
 
 

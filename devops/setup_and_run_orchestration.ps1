@@ -2,10 +2,10 @@
 $host.ui.RawUI.WindowTitle = "ld Orchestration"
 
 # Set variables
-$PROJECT_DIR = "C:\Repos\jperod\ld"
+$PROJECT_DIR = "C:\Repos\life-decisions"
 $VENV_DIR = "$PROJECT_DIR\.venv"
 $PYTHON_VERSION = "python3.12"
-$ORCHESTRATION_SCRIPT = "$PROJECT_DIR\data_factory\orchestrator.py"
+$ORCHESTRATION_SCRIPT = "$PROJECT_DIR\orchestrator.py"
 
 # Output Python version for debugging
 Write-Host "Python version being used: $PYTHON_VERSION"
@@ -42,6 +42,9 @@ Write-Host "Installing Poetry..."
 pip install poetry
 Write-Host "Installing project dependencies..."
 poetry install
+
+# Run Unit Tests
+pytest
 
 # Run orchestration script
 Write-Host "Running orchestration script..."
