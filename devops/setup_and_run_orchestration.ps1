@@ -1,5 +1,5 @@
 # Set the title for the PowerShell window
-$host.ui.RawUI.WindowTitle = "ld Orchestration"
+$host.ui.RawUI.WindowTitle = "Life Decisions Orchestration"
 
 # Set variables
 $PROJECT_DIR = "C:\Repos\life-decisions"
