@@ -44,7 +44,7 @@ class JacketDecision(Enum):
 
 class GlovesDecision(Enum):
     NO = "No"
-    YES = "YES"
+    YES = "Yes"
 
 
 class MyJacketDecisionMaker:
@@ -137,20 +137,19 @@ class MyJacketDecisionMaker:
     def decide_jacket(self) -> str:
         # Initialize temperature counters
         total_feels_like_temp = 0
-        min_temp = -20
         count = 0
 
         self.validate_forecast_not_empty()
         
         # Iterate over weather data to compute averages and minimums
-        for entry in self.forecast:
+        for i, entry in enumerate(self.forecast):
             total_feels_like_temp += entry["deg_c_feels"]
-            min_temp = min(min_temp, entry["deg_c_min"])
+            if i == 0:
+                min_temp = entry["deg_c_min"]
+            else:
+                min_temp = min(min_temp, entry["deg_c_min"])
             count += 1
 
-        # Calculate average feels-like temperature
-        if count == 0:
-            return JacketDecision.NO_JACKET  # No data available
 
         avg_feels_like_temp = round(total_feels_like_temp / count, 1)
 
@@ -183,27 +182,25 @@ class MyJacketDecisionMaker:
     def decide_gloves(self) -> str:
         # Initialize temperature counters
         total_feels_like_temp = 0
-        min_temp = -20
         count = 0
 
 
         self.validate_forecast_not_empty()
         
         # Iterate over weather data to compute averages and minimums
-        for entry in self.forecast:
-            if "deg_c_feels" in entry:
-                total_feels_like_temp += entry["deg_c_feels"]
+        for i, entry in enumerate(self.forecast):
+            total_feels_like_temp += entry["deg_c_feels"]
+            if i == 0:
+                min_temp = entry["deg_c_min"]
+            else:
                 min_temp = min(min_temp, entry["deg_c_min"])
-                count += 1
+            count += 1
 
-        # Calculate average feels-like temperature
-        if count == 0:
-            return GlovesDecision.NO  # No data available
 
         avg_feels_like_temp = total_feels_like_temp / count
 
         # Decision logic
-        if avg_feels_like_temp <= 0:
+        if avg_feels_like_temp <= 4:
             if self.verbose:
                 print("Wear warm gloves, it's very cold!")
             return GlovesDecision.YES.value

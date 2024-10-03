@@ -3,7 +3,7 @@ from datetime import datetime
 
 import pytest
 
-from jacket.jacket_decision import (ForecastDataRow, JacketDecision,
+from jacket.jacket_decision import (GlovesDecision, JacketDecision,
                                     MyJacketDecisionMaker, RainJacketDecision)
 
 
@@ -163,7 +163,7 @@ class TestMyJacketDecisionMaker:
             assert issubclass(w[-1].category, UserWarning)
             assert "Forecast data contains 2 rows, but 5 rows are expected." in str(w[-1].message)
 
-    def test_decide_jacket_cold_weather():
+    def test_decide_jacket_cold_weather(self):
         # Test case with cold weather
         forecast = [
             {"deg_c_feels": 0, "deg_c_min": -5},
@@ -175,50 +175,111 @@ class TestMyJacketDecisionMaker:
         weather = MyJacketDecisionMaker(forecast)
         assert weather.decide_jacket() == JacketDecision.WARM_JACKET.value
 
-    # def test_decide_jacket_regular_jacket_with_layers():
-    #     # Test case with regular jacket with layers weather
-    #     forecast = [
-    #         {"deg_c_feels": 7, "deg_c_min": 2},
-    #         {"deg_c_feels": 8, "deg_c_min": 3},
-    #         {"deg_c_feels": 9, "deg_c_min": 4},
-    #         {"deg_c_feels": 10, "deg_c_min": 5},
-    #         {"deg_c_feels": 11, "deg_c_min": 6}
-    #     ]
-    #     weather = MyJacketDecisionMaker(forecast)
-    #     assert weather.decide_jacket() == JacketDecision.REGULAR_JACKET_w_LAYERS.value
+    def test_decide_jacket_regular_jacket_with_layers(self):
+        # Test case with regular jacket with layers weather
+        forecast = [
+            {"deg_c_feels": 7, "deg_c_min": 2},
+            {"deg_c_feels": 8, "deg_c_min": 3},
+            {"deg_c_feels": 9, "deg_c_min": 4},
+            {"deg_c_feels": 10, "deg_c_min": 5},
+            {"deg_c_feels": 11, "deg_c_min": 6}
+        ]
+        weather = MyJacketDecisionMaker(forecast)
+        assert weather.decide_jacket() == JacketDecision.REGULAR_JACKET_w_LAYERS.value
 
-    # def test_decide_jacket_regular_jacket():
-    #     # Test case with regular jacket weather
-    #     forecast = [
-    #         {"deg_c_feels": 12, "deg_c_min": 7},
-    #         {"deg_c_feels": 13, "deg_c_min": 8},
-    #         {"deg_c_feels": 14, "deg_c_min": 9},
-    #         {"deg_c_feels": 15, "deg_c_min": 10},
-    #         {"deg_c_feels": 16, "deg_c_min": 11}
-    #     ]
-    #     weather = MyJacketDecisionMaker(forecast)
-    #     assert weather.decide_jacket() == JacketDecision.REGULAR_JACKET.value
+    def test_decide_jacket_regular_jacket(self):
+        # Test case with regular jacket weather
+        forecast = [
+            {"deg_c_feels": 12, "deg_c_min": 7},
+            {"deg_c_feels": 13, "deg_c_min": 8},
+            {"deg_c_feels": 14, "deg_c_min": 9},
+            {"deg_c_feels": 15, "deg_c_min": 10},
+            {"deg_c_feels": 16, "deg_c_min": 11}
+        ]
+        weather = MyJacketDecisionMaker(forecast)
+        assert weather.decide_jacket() == JacketDecision.REGULAR_JACKET.value
 
-    # def test_decide_jacket_light_jacket():
-    #     # Test case with light jacket weather
-    #     forecast = [
-    #         {"deg_c_feels": 17, "deg_c_min": 12},
-    #         {"deg_c_feels": 18, "deg_c_min": 13},
-    #         {"deg_c_feels": 19, "deg_c_min": 14},
-    #         {"deg_c_feels": 20, "deg_c_min": 15},
-    #         {"deg_c_feels": 21, "deg_c_min": 16}
-    #     ]
-    #     weather = MyJacketDecisionMaker(forecast)
-    #     assert weather.decide_jacket() == JacketDecision.LIGHT_JACKET.value
+    def test_decide_jacket_light_jacket(self):
+        # Test case with light jacket weather
+        forecast = [
+            {"deg_c_feels": 17, "deg_c_min": 12},
+            {"deg_c_feels": 18, "deg_c_min": 13},
+            {"deg_c_feels": 19, "deg_c_min": 14},
+            {"deg_c_feels": 20, "deg_c_min": 15},
+            {"deg_c_feels": 21, "deg_c_min": 16}
+        ]
+        weather = MyJacketDecisionMaker(forecast)
+        assert weather.decide_jacket() == JacketDecision.LIGHT_JACKET.value
 
-    # def test_decide_jacket_tshirt():
-    #     # Test case with t-shirt weather
-    #     forecast = [
-    #         {"deg_c_feels": 22, "deg_c_min": 18},
-    #         {"deg_c_feels": 23, "deg_c_min": 19},
-    #         {"deg_c_feels": 24, "deg_c_min": 20},
-    #         {"deg_c_feels": 25, "deg_c_min": 21},
-    #         {"deg_c_feels": 26, "deg_c_min": 22}
-    #     ]
-    #     weather = MyJacketDecisionMaker(forecast)
-    #     # assert weather.decide_jacket() == JacketDecision.TSHIRT.value
+    def test_decide_jacket_tshirt(self):
+        # Test case with t-shirt weather
+        forecast = [
+            {"deg_c_feels": 22, "deg_c_min": 18},
+            {"deg_c_feels": 23, "deg_c_min": 19},
+            {"deg_c_feels": 24, "deg_c_min": 20},
+            {"deg_c_feels": 25, "deg_c_min": 21},
+            {"deg_c_feels": 26, "deg_c_min": 22}
+        ]
+        weather = MyJacketDecisionMaker(forecast)
+        assert weather.decide_jacket() == JacketDecision.TSHIRT.value
+
+
+
+class TestMyJacketDecisionMakerGloves:
+
+    def test_decide_gloves_no_entries(self):
+        forecast = []
+        decision_maker = MyJacketDecisionMaker(forecast)
+        with pytest.raises(ValueError, match="Forecast data must not be empty or None. It must contain at least one row."):
+            decision_maker.decide_gloves()
+
+    def test_decide_gloves_none_forecast(self):
+        decision_maker = MyJacketDecisionMaker(None)
+        with pytest.raises(ValueError, match="Forecast data must not be empty or None. It must contain at least one row."):
+            decision_maker.decide_gloves()
+
+    def test_decide_gloves_less_than_five_entries(self):
+        forecast = [
+            {"deg_c_feels": 5, "deg_c_min": 0},
+            {"deg_c_feels": 7, "deg_c_min": 2}
+        ]
+        decision_maker = MyJacketDecisionMaker(forecast)
+        with warnings.catch_warnings(record=True) as w:
+            warnings.simplefilter("always")
+            assert decision_maker.decide_gloves() == GlovesDecision.YES.value
+            assert len(w) == 1
+            assert issubclass(w[-1].category, UserWarning)
+            assert "Forecast data contains 2 rows, but 5 rows are expected." in str(w[-1].message)
+
+    def test_decide_gloves_very_cold(self):
+        forecast = [
+            {"deg_c_feels": 0, "deg_c_min": -5},
+            {"deg_c_feels": 2, "deg_c_min": -3},
+            {"deg_c_feels": 4, "deg_c_min": -2},
+            {"deg_c_feels": 5, "deg_c_min": -1},
+            {"deg_c_feels": 6, "deg_c_min": 0}
+        ]
+        decision_maker = MyJacketDecisionMaker(forecast)
+        assert decision_maker.decide_gloves() == GlovesDecision.YES.value
+
+    def test_decide_gloves_cold(self):
+        forecast = [
+            {"deg_c_feels": 6, "deg_c_min": 5},
+            {"deg_c_feels": 7, "deg_c_min": 6},
+            {"deg_c_feels": 8, "deg_c_min": 7},
+            {"deg_c_feels": 9, "deg_c_min": 8},
+            {"deg_c_feels": 10, "deg_c_min": 9}
+        ]
+        decision_maker = MyJacketDecisionMaker(forecast)
+        assert decision_maker.decide_gloves() == GlovesDecision.YES.value
+
+    def test_decide_gloves_warm(self):
+        forecast = [
+            {"deg_c_feels": 10, "deg_c_min": 8},
+            {"deg_c_feels": 12, "deg_c_min": 9},
+            {"deg_c_feels": 11, "deg_c_min": 10},
+            {"deg_c_feels": 13, "deg_c_min": 11},
+            {"deg_c_feels": 14, "deg_c_min": 12}
+        ]
+        decision_maker = MyJacketDecisionMaker(forecast)
+        assert decision_maker.decide_gloves() == GlovesDecision.NO.value
