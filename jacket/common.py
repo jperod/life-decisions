@@ -1,4 +1,3 @@
-
 import datetime
 import warnings
 from typing import List, Literal, Optional
@@ -7,38 +6,36 @@ import pandas as pd
 from pydantic import BaseModel
 
 from common.utils import get_now_cph_str
+from common.weather_utils import ForecastDataRow
 
-
-class ForecastDataRow(BaseModel):
-    datetime_cph: datetime.datetime  # You can use `datetime` type if you prefer
-    deg_c: float
-    deg_c_min: float
-    deg_c_max: float
-    deg_c_feels: float
-    weather: str
-    wind: Literal["Low", "Medium", "High", "None"]
-    rain: Optional[Literal["Low", "Medium", "High", "None"]]
 
 class ForecastUtils:
 
     @staticmethod
-    def validate_forecast_not_empty(forecast: List[ForecastDataRow], warning:bool=True) -> None:
+    def validate_forecast_not_empty(
+        forecast: List[ForecastDataRow], warning: bool = True
+    ) -> None:
 
         # Check if forecast is None or empty
         if not forecast:
-            raise ValueError("Forecast data must not be empty or None. It must contain at least one row.")
-        
-        
+            raise ValueError(
+                "Forecast data must not be empty or None. It must contain at least one row."
+            )
+
         # Check if forecast has different than 5 rows
         if len(forecast) != 5 and warning:
-            warnings.warn(f"Warning: Forecast data contains {len(forecast)} rows, but 5 rows are expected.", UserWarning)
+            warnings.warn(
+                f"Warning: Forecast data contains {len(forecast)} rows, but 5 rows are expected.",
+                UserWarning,
+            )
 
     @staticmethod
-    def calculate_avg_feels_temperature(forecast: List[ForecastDataRow], verbose:bool=False) -> float:
+    def calculate_avg_feels_temperature(
+        forecast: List[ForecastDataRow], verbose: bool = False
+    ) -> float:
         """calculate avg feels like temperature in celcius"""
 
         ForecastUtils.validate_forecast_not_empty(forecast, warning=False)
-
 
         # Initialize temperature counters
         total_feels_like_temp = 0
@@ -54,7 +51,7 @@ class ForecastUtils:
         if verbose:
             print(f"avg_feels_like_temp = {avg_feels_like_temp} C")
         return avg_feels_like_temp
-    
+
     @staticmethod
     def calculate_min_temperature(forecast: List[ForecastDataRow]) -> float:
 

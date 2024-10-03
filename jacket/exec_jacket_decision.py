@@ -1,19 +1,31 @@
 """module to decide which jacket to wear based on weather data"""
 
 import datetime
+import os
+import sys
+
+# Set the working directory to the project root
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, project_root)
+os.chdir(project_root)  # Change the current working directory to the project root
 
 import pandas as pd
 import pytz
 
 from common.utils import GitUtils
-from common.weather_utils import (ForecastDataRow, classify_rain_intensity_3h,
-                                  classify_wind_intensity, kelvin_to_celsius)
+from common.weather_utils import (
+    ForecastDataRow,
+    classify_rain_intensity_3h,
+    classify_wind_intensity,
+    kelvin_to_celsius,
+)
 from integrations.openweathermap import OpenWeatherMapApi
-from jacket.jacket import (JacketDecision, MyJacketDecisionMaker,
-                           RainJacketDecision)
+from jacket.common import ForecastUtils
+from jacket.gloves import GlovesDecisionMaker
+from jacket.jacket import JacketDecisionMaker
+from jacket.rain_jacket import RainJacketDecisionMaker
 
 openweather_api = OpenWeatherMapApi()
-
 
 CITY = "Copenhagen"
 data = openweather_api.get_forecast_by_city(CITY)
@@ -54,20 +66,21 @@ df = pd.DataFrame(rows)
 df["datetime_cph"] = df["datetime_cph"].dt.strftime("%Y-%m-%d %H:%M")
 print(df)
 
-jdm = MyJacketDecisionMaker(rows, verbose=True)
-jacket = jdm.decide_jacket()
-rain_jacket = jdm.should_take_rain_jacket()
-gloves = jdm.decide_gloves()
-avg_feels_temp = jdm.calculate_avg_feels_temperature()
+forecast = rows
 
-# Overwrite with rain jacket
-if (jacket == JacketDecision.REGULAR_JACKET.value or jacket == JacketDecision.LIGHT_JACKET.value) and rain_jacket == RainJacketDecision.YES.value:
-    jacket = JacketDecision.REGULAR_RAIN_JACKET.value
-elif jacket == JacketDecision.REGULAR_JACKET_w_LAYERS.value and rain_jacket == RainJacketDecision.YES.value:
-    jacket = JacketDecision.REGULAR_RAIN_JACKET_w_LAYERS.value
-elif jacket == JacketDecision.WARM_JACKET.value and rain_jacket == RainJacketDecision.YES.value:
-    jacket = JacketDecision.WARM_RAIN_JACKET.value
+rjdm_no_verbose = RainJacketDecisionMaker(forecast, verbose=False)
+rjdm_verbose = RainJacketDecisionMaker(forecast, verbose=True)
+jdm = JacketDecisionMaker(forecast, rjdm_no_verbose, verbose=True)
+gdm = GlovesDecisionMaker(forecast, verbose=True)
+
+jacket = jdm.decide_jacket()
+rain_jacket = rjdm_verbose.decide_rain_jacket()
+gloves = gdm.decide_gloves()
+
+avg_feels_temp = ForecastUtils.calculate_avg_feels_temperature(forecast)
 
 markdown_file_path = "what-jacket-to-wear.md"
-jdm.update_jacket_markdown(markdown_file_path, jacket, rain_jacket, gloves, avg_feels_temp, df)
+ForecastUtils.update_jacket_markdown(
+    markdown_file_path, jacket, rain_jacket, gloves, avg_feels_temp, df
+)
 GitUtils.add_commit_push(markdown_file_path)
