@@ -88,15 +88,15 @@ class ForecastUtils:
         readme_content = f"""
 # Copenhagen Jacket Decision Maker
 
-Danish weather is very uncertain, so I made this app to help me decide what jacket to wear based on weather data. 
-It also help me know when it gets cold enough to take gloves or when I should be prepared for rain.
+Danish weather can be quite unpredictable, so I created this app to help me decide which jacket to wear based on the weather forecast. 
+It also alerts me when it's cold enough to bring gloves or when I should be ready for rain.
 
 ## What Jacket to wear?
 
 - **Datetime**: {get_now_cph_str()}
-- **Recommended Jacket Type**: {jacket}
-- **Take a Rain Jacket?** {rain_jacket}
-- **Take Gloves?** {gloves}
+- **Jacket**: {jacket}
+- **Rain?** {rain_jacket}
+- **Gloves?** {gloves}
 
 ## Weather Forecast
 - Avg Feels Like Temperature: {avg_feels_temp} °C
