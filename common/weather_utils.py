@@ -1,8 +1,10 @@
 """common utilities related to dealing with weather data and operations"""
 
-from pydantic import BaseModel
-from typing import Literal, Optional
 import datetime
+from typing import Literal, Optional
+
+from pydantic import BaseModel
+
 
 class ForecastDataRow(BaseModel):
     datetime_cph: datetime.datetime  # You can use `datetime` type if you prefer
@@ -15,7 +17,7 @@ class ForecastDataRow(BaseModel):
     rain: Optional[Literal["Low", "Medium", "High", "None"]]
 
 
-def fahrenheit_to_celsius(fahrenheit:float):
+def fahrenheit_to_celsius(fahrenheit: float):
     """
     Convert fahrenheit to celcius
     """
@@ -23,35 +25,37 @@ def fahrenheit_to_celsius(fahrenheit:float):
     return celsius
 
 
-def kelvin_to_celsius(kelvin:float):
+def kelvin_to_celsius(kelvin: float):
     """
     Convert temperature from Kelvin to Celsius.
     """
     celsius = kelvin - 273.15
     return celsius
 
-def classify_rain_intensity_3h(rainfall_mm:float):
+
+def classify_rain_intensity_3h(rainfall_mm: float):
     """Classify based on the amount of rain"""
     if rainfall_mm < 2.5:
-        return 'Low'
+        return "Low"
     elif 2.5 <= rainfall_mm < 7.6:
-        return 'Medium'
+        return "Medium"
     else:
-        return 'High'
-    
-def classify_wind_intensity(speed:float, gust:float):
+        return "High"
+
+
+def classify_wind_intensity(speed: float, gust: float):
     # Define thresholds for wind speed (in meters per second)
     if speed < 5:
-        intensity = 'Low'
+        intensity = "Low"
     elif 5 <= speed < 10:
-        intensity = 'Medium'
+        intensity = "Medium"
     else:
-        intensity = 'High'
+        intensity = "High"
 
     # Adjust classification based on gust speed (in meters per second)
     if gust > 15:
-        intensity = 'High'
-    elif gust > 10 and intensity == 'Medium':
-        intensity = 'High'
+        intensity = "High"
+    elif gust > 10 and intensity == "Medium":
+        intensity = "High"
 
     return intensity
