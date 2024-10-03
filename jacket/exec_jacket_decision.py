@@ -9,8 +9,8 @@ from common.utils import GitUtils
 from common.weather_utils import (ForecastDataRow, classify_rain_intensity_3h,
                                   classify_wind_intensity, kelvin_to_celsius)
 from integrations.openweathermap import OpenWeatherMapApi
-from jacket.jacket_decision import (JacketDecision, MyJacketDecisionMaker,
-                                    RainJacketDecision)
+from jacket.jacket import (JacketDecision, MyJacketDecisionMaker,
+                           RainJacketDecision)
 
 openweather_api = OpenWeatherMapApi()
 
