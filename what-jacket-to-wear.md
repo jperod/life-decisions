@@ -6,7 +6,7 @@ It also alerts me when it's cold enough to bring gloves or when I should be read
 
 ## What Jacket to wear?
 
-- **Datetime**: 2024-10-06 05:28
+- **Datetime**: 2024-10-06 05:33
 - **Jacket**: Regular Jacket with Warm Layers
 - **Rain?** No
 - **Gloves?** No
@@ -16,8 +16,8 @@ It also alerts me when it's cold enough to bring gloves or when I should be read
 
 | datetime_cph     |   deg_c |   deg_c_min |   deg_c_max |   deg_c_feels | weather   | wind   | rain   |
 |:-----------------|--------:|------------:|------------:|--------------:|:----------|:-------|:-------|
-| 2024-10-06 08:00 |    6.27 |        6.27 |       10.09 |          6.27 | Clear     | Low    | None   |
-| 2024-10-06 11:00 |    9.72 |        9.72 |       12.4  |          8.51 | Clear     | Low    | None   |
+| 2024-10-06 08:00 |    6.24 |        6.24 |       10.09 |          6.24 | Clear     | Low    | None   |
+| 2024-10-06 11:00 |    9.7  |        9.7  |       12.4  |          8.48 | Clear     | Low    | None   |
 | 2024-10-06 14:00 |   13.38 |       13.38 |       13.38 |         12.42 | Clouds    | Low    | None   |
 | 2024-10-06 17:00 |   12.55 |       12.55 |       12.55 |         11.53 | Clear     | Low    | None   |
 | 2024-10-06 20:00 |   11.37 |       11.37 |       11.37 |         10.34 | Clear     | Low    | None   |
