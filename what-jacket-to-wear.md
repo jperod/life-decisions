@@ -6,19 +6,19 @@ It also alerts me when it's cold enough to bring gloves or when I should be read
 
 ## What Jacket to wear?
 
-- **Datetime**: 2024-10-09 10:43
+- **Datetime**: 2024-10-09 10:48
 - **Jacket**: Rain Jacket and T-shirt
 - **Rain?** Yes
 - **Gloves?** No
 
 ## Weather Forecast
-- Avg Feels Like Temperature: 13.7 °C
+- Avg Feels Like Temperature: 13.8 °C
 
 | datetime_cph     |   deg_c |   deg_c_min |   deg_c_max |   deg_c_feels | weather   | wind   | rain   |
 |:-----------------|--------:|------------:|------------:|--------------:|:----------|:-------|:-------|
-| 2024-10-09 11:00 |   13.61 |       13.61 |       14.94 |         13.61 | Rain      | Low    | Low    |
-| 2024-10-09 14:00 |   14.27 |       14.27 |       15.59 |         14.15 | Rain      | Medium | Low    |
-| 2024-10-09 17:00 |   14.47 |       14.47 |       14.9  |         14.19 | Rain      | Low    | Low    |
+| 2024-10-09 11:00 |   13.85 |       13.85 |       14.94 |         13.88 | Rain      | Low    | Low    |
+| 2024-10-09 14:00 |   14.43 |       14.43 |       15.59 |         14.33 | Rain      | Medium | Low    |
+| 2024-10-09 17:00 |   14.55 |       14.55 |       14.9  |         14.28 | Rain      | Low    | Low    |
 | 2024-10-09 20:00 |   13.67 |       13.67 |       13.67 |         13.42 | Clouds    | Low    | None   |
 | 2024-10-09 23:00 |   13.14 |       13.14 |       13.14 |         12.94 | Rain      | Low    | Low    |
         
