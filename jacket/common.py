@@ -1,4 +1,5 @@
 import datetime
+import statistics
 import warnings
 from typing import List, Literal, Optional
 
@@ -51,6 +52,27 @@ class ForecastUtils:
         if verbose:
             print(f"avg_feels_like_temp = {avg_feels_like_temp} C")
         return avg_feels_like_temp
+
+    @staticmethod
+    def calculate_median_feels_temperature(
+        forecast: List[ForecastDataRow], verbose: bool = False
+    ) -> float:
+        """Calculate the median feels-like temperature in Celsius."""
+        # List to store feels-like temperatures
+        feels_like_temps = []
+
+        # Iterate over weather data to collect feels-like temperatures
+        for entry in forecast:
+            feels_like_temps.append(entry["deg_c_feels"])
+
+        # Calculate median feels-like temperature
+        if not feels_like_temps:  # Check if the list is empty
+            raise ValueError()
+
+        median_feels_like_temp = round(statistics.median(feels_like_temps), 1)
+        if verbose:
+            print(f"median_feels_like_temp = {median_feels_like_temp} C")
+        return median_feels_like_temp
 
     @staticmethod
     def calculate_min_temperature(forecast: List[ForecastDataRow]) -> float:
