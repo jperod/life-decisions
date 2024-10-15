@@ -41,17 +41,24 @@ class JacketDecisionMaker:
         avg_feels_like_temp = ForecastUtils.calculate_avg_feels_temperature(
             self.forecast
         )
+        median_feels_like_temp = ForecastUtils.calculate_median_feels_temperature(
+            self.forecast
+        )
         min_temp = ForecastUtils.calculate_min_temperature(self.forecast)
 
         # Decision logic
-        if avg_feels_like_temp < 6:
+        if avg_feels_like_temp < 2:
             if self.verbose:
                 print("Take a warm jacket, it's cold!")
             return JacketDecision.WARM_JACKET.value
-        elif avg_feels_like_temp < 10:
+        elif avg_feels_like_temp < 8 and median_feels_like_temp < 8:
             if self.verbose:
                 print("Take a regular jacket, with layers inside!")
             return JacketDecision.REGULAR_JACKET_w_LAYERS.value
+        elif avg_feels_like_temp < 8 and median_feels_like_temp >= 8:
+            if self.verbose:
+                print("Take a regular jacket with shirt")
+            return JacketDecision.REGULAR_JACKET.value
         elif avg_feels_like_temp < 17.5:
             if self.verbose:
                 print("Take a regular jacket with shirt")

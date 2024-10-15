@@ -77,7 +77,10 @@ jacket = jdm.decide_jacket()
 rain_jacket = rjdm_verbose.decide_rain_jacket()
 gloves = gdm.decide_gloves()
 
-avg_feels_temp = ForecastUtils.calculate_avg_feels_temperature(forecast)
+avg_feels_temp = ForecastUtils.calculate_avg_feels_temperature(forecast, verbose=True)
+avg_feels_temp = ForecastUtils.calculate_median_feels_temperature(
+    forecast, verbose=True
+)
 
 markdown_file_path = "what-jacket-to-wear.md"
 ForecastUtils.update_jacket_markdown(

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "life-decisions"
-version = "0.1.6"
+version = "0.1.7"
 description = ""
 authors = ["Pedro <p3dror@gmail.com>"]
 readme = "README.md"

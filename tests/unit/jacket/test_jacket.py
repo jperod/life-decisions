@@ -49,10 +49,10 @@ class TestJacketDecisionMakerFromTemp:
         # Test case with cold weather
         forecast = [
             {"deg_c_feels": 0, "deg_c_min": -5},
-            {"deg_c_feels": 2, "deg_c_min": -3},
-            {"deg_c_feels": 4, "deg_c_min": -2},
-            {"deg_c_feels": 5, "deg_c_min": -1},
-            {"deg_c_feels": 6, "deg_c_min": 0},
+            {"deg_c_feels": -2, "deg_c_min": -3},
+            {"deg_c_feels": -4, "deg_c_min": -2},
+            {"deg_c_feels": 1, "deg_c_min": -1},
+            {"deg_c_feels": 1, "deg_c_min": 0},
         ]
         jdm = JacketDecisionMaker(forecast)
         assert jdm.decide_jacket_from_temp() == JacketDecision.WARM_JACKET.value
@@ -67,10 +67,7 @@ class TestJacketDecisionMakerFromTemp:
             {"deg_c_feels": 11, "deg_c_min": 6},
         ]
         jdm = JacketDecisionMaker(forecast)
-        assert (
-            jdm.decide_jacket_from_temp()
-            == JacketDecision.REGULAR_JACKET_w_LAYERS.value
-        )
+        assert jdm.decide_jacket_from_temp() == JacketDecision.REGULAR_JACKET.value
 
     def test_decide_jacket_from_temp_regular_jacket(self):
         # Test case with regular jacket weather
@@ -202,9 +199,9 @@ class TestJacketDecisionMaker:
         forecast = [
             {"deg_c_feels": 7, "deg_c_min": 2, "rain": "None"},
             {"deg_c_feels": 8, "deg_c_min": 3, "rain": "None"},
-            {"deg_c_feels": 9, "deg_c_min": 4, "rain": "None"},
-            {"deg_c_feels": 10, "deg_c_min": 5, "rain": "None"},
-            {"deg_c_feels": 11, "deg_c_min": 6, "rain": "None"},
+            {"deg_c_feels": 4, "deg_c_min": 4, "rain": "None"},
+            {"deg_c_feels": 2, "deg_c_min": 5, "rain": "None"},
+            {"deg_c_feels": 3, "deg_c_min": 6, "rain": "None"},
         ]
         rdm = RainJacketDecisionMaker(forecast)
         jdm = JacketDecisionMaker(forecast, rdm)
@@ -221,7 +218,7 @@ class TestJacketDecisionMaker:
         ]
         rdm = RainJacketDecisionMaker(forecast)
         jdm = JacketDecisionMaker(forecast, rdm)
-        assert jdm.decide_jacket() == JacketDecision.REGULAR_RAIN_JACKET_w_LAYERS.value
+        assert jdm.decide_jacket() == JacketDecision.REGULAR_RAIN_JACKET.value
 
     # REGULAR JACKET
 
@@ -356,9 +353,9 @@ class TestJacketDecisionMaker:
     def test_decide_warm_jacket_optional_rain(self):
         # Test case with warm jacket weather and optional rain
         forecast = [
-            {"deg_c_feels": 5, "deg_c_min": 0, "rain": "None"},
-            {"deg_c_feels": 4, "deg_c_min": -1, "rain": "Low"},
-            {"deg_c_feels": 3, "deg_c_min": -2, "rain": "None"},
+            {"deg_c_feels": -5, "deg_c_min": 0, "rain": "None"},
+            {"deg_c_feels": -4, "deg_c_min": -1, "rain": "Low"},
+            {"deg_c_feels": -3, "deg_c_min": -2, "rain": "None"},
             {"deg_c_feels": 2, "deg_c_min": -3, "rain": "Low"},
             {"deg_c_feels": 1, "deg_c_min": -4, "rain": "None"},
         ]
