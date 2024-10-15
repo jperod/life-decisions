@@ -94,6 +94,7 @@ class ForecastUtils:
         rain_jacket: str,
         gloves: str,
         avg_feels_temp: float,
+        median_feels_temp: float,
         df: pd.DataFrame,
     ):
         """Updates the target markdown file with weather-related content.
@@ -122,6 +123,7 @@ It also alerts me when it's cold enough to bring gloves or when I should be read
 
 ## Weather Forecast
 - Avg Feels Like Temperature: {avg_feels_temp} °C
+- Median Feels Like Temperature: {median_feels_temp} °C
 
 {df.to_markdown(index=False).strip()}
         """

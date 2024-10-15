@@ -78,12 +78,18 @@ rain_jacket = rjdm_verbose.decide_rain_jacket()
 gloves = gdm.decide_gloves()
 
 avg_feels_temp = ForecastUtils.calculate_avg_feels_temperature(forecast, verbose=True)
-avg_feels_temp = ForecastUtils.calculate_median_feels_temperature(
+median_feels_temp = ForecastUtils.calculate_median_feels_temperature(
     forecast, verbose=True
 )
 
 markdown_file_path = "what-jacket-to-wear.md"
 ForecastUtils.update_jacket_markdown(
-    markdown_file_path, jacket, rain_jacket, gloves, avg_feels_temp, df
+    markdown_file_path,
+    jacket,
+    rain_jacket,
+    gloves,
+    avg_feels_temp,
+    median_feels_temp,
+    df,
 )
 GitUtils.add_commit_push(markdown_file_path)
