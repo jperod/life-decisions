@@ -6,9 +6,9 @@ It also alerts me when it's cold enough to bring gloves or when I should be read
 
 ## What Jacket to wear?
 
-- **Datetime**: 2024-11-03 18:40
-- **Jacket**: Regular Jacket and T-Shirt
-- **Rain?** Optional
+- **Datetime**: 2024-11-03 18:46
+- **Jacket**: Rain Jacket and T-shirt
+- **Rain?** Yes
 - **Gloves?** No
 
 ## Weather Forecast
@@ -21,5 +21,5 @@ It also alerts me when it's cold enough to bring gloves or when I should be read
 | 2024-11-03 22:00 |   11.19 |       11.02 |       11.19 |         10.56 | Clouds    | High   | None   |
 | 2024-11-04 01:00 |   11.1  |       11.01 |       11.1  |         10.56 | Rain      | Low    | Low    |
 | 2024-11-04 04:00 |   10.71 |       10.71 |       10.71 |         10.29 | Rain      | Low    | Low    |
-| 2024-11-04 07:00 |   10.85 |       10.85 |       10.85 |         10.47 | Clouds    | Low    | None   |
+| 2024-11-04 07:00 |   10.7  |       10.7  |       10.7  |         10.31 | Rain      | Low    | Low    |
         
