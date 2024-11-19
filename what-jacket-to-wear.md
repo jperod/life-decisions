@@ -6,7 +6,7 @@ It also alerts me when it's cold enough to bring gloves or when I should be read
 
 ## What Jacket to wear?
 
-- **Datetime**: 2024-11-20 00:00
+- **Datetime**: 2024-11-20 00:06
 - **Jacket**: Warm Jacket
 - **Rain?** No
 - **Gloves?** Yes
