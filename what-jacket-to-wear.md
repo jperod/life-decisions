@@ -6,20 +6,20 @@ It also alerts me when it's cold enough to bring gloves or when I should be read
 
 ## What Jacket to wear?
 
-- **Datetime**: 2024-11-22 12:36
+- **Datetime**: 2024-11-22 12:41
 - **Jacket**: Warm Jacket
-- **Rain?** No
+- **Rain?** Optional
 - **Gloves?** Yes
 
 ## Weather Forecast
-- Avg Feels Like Temperature: -2.8 °C
-- Median Feels Like Temperature: -2.7 °C
+- Avg Feels Like Temperature: -3.0 °C
+- Median Feels Like Temperature: -3.0 °C
 
 | datetime_cph     |   deg_c |   deg_c_min |   deg_c_max |   deg_c_feels | weather   | wind   | rain   |
 |:-----------------|--------:|------------:|------------:|--------------:|:----------|:-------|:-------|
-| 2024-11-22 13:00 |    1    |        1    |        2.67 |         -2.17 | Clouds    | Low    | None   |
-| 2024-11-22 16:00 |    1.61 |        1.61 |        2.83 |         -2.66 | Snow      | Low    | None   |
-| 2024-11-22 19:00 |    1.89 |        1.89 |        2.33 |         -1.59 | Snow      | Low    | None   |
-| 2024-11-22 22:00 |    2.01 |        2.01 |        2.01 |         -3.87 | Clouds    | High   | None   |
-| 2024-11-23 01:00 |    2.03 |        2.03 |        2.03 |         -3.52 | Clouds    | High   | None   |
+| 2024-11-22 13:00 |    1.1  |        0.98 |        1.1  |         -1.57 | Snow      | Low    | None   |
+| 2024-11-22 16:00 |    1.19 |        1.19 |        1.38 |         -3.01 | Rain      | Low    | Low    |
+| 2024-11-22 19:00 |    0.38 |        0.02 |        0.38 |         -4.03 | Snow      | Low    | None   |
+| 2024-11-22 22:00 |    0.06 |        0.06 |        0.06 |         -2.79 | Clouds    | Low    | None   |
+| 2024-11-23 01:00 |    0.71 |        0.71 |        0.71 |         -3.57 | Clouds    | Low    | None   |
         
