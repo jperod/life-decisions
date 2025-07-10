@@ -6,7 +6,7 @@ It also alerts me when it's cold enough to bring gloves or when I should be read
 
 ## What Jacket to wear?
 
-- **Datetime**: 2025-07-10 03:16
+- **Datetime**: 2025-07-10 03:21
 - **Jacket**: Rain Jacket and T-shirt
 - **Rain?** Optional
 - **Gloves?** No
@@ -17,8 +17,8 @@ It also alerts me when it's cold enough to bring gloves or when I should be read
 
 | datetime_cph     |   deg_c |   deg_c_min |   deg_c_max |   deg_c_feels | weather   | wind   | rain   |
 |:-----------------|--------:|------------:|------------:|--------------:|:----------|:-------|:-------|
-| 2025-07-10 05:00 |   14.55 |       13.26 |       14.55 |         14.31 | Clouds    | Low    | None   |
-| 2025-07-10 08:00 |   15.99 |       15.99 |       16.38 |         15.66 | Clouds    | Low    | None   |
+| 2025-07-10 05:00 |   14.53 |       13.19 |       14.53 |         14.28 | Clouds    | Low    | None   |
+| 2025-07-10 08:00 |   15.96 |       15.96 |       16.34 |         15.62 | Clouds    | Low    | None   |
 | 2025-07-10 11:00 |   19.06 |       19.06 |       19.06 |         18.54 | Clouds    | Low    | None   |
 | 2025-07-10 14:00 |   20.93 |       20.93 |       20.93 |         20.49 | Rain      | Low    | Low    |
 | 2025-07-10 17:00 |   19.78 |       19.78 |       19.78 |         19.2  | Clouds    | Low    | None   |
