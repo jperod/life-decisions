@@ -6,19 +6,19 @@ It also alerts me when it's cold enough to bring gloves or when I should be read
 
 ## What Jacket to wear?
 
-- **Datetime**: 2025-07-11 11:09
+- **Datetime**: 2025-07-11 11:15
 - **Jacket**: Rain Jacket and T-shirt
 - **Rain?** Yes
 - **Gloves?** No
 
 ## Weather Forecast
-- Avg Feels Like Temperature: 19.2 °C
-- Median Feels Like Temperature: 19.2 °C
+- Avg Feels Like Temperature: 19.0 °C
+- Median Feels Like Temperature: 19.1 °C
 
 | datetime_cph     |   deg_c |   deg_c_min |   deg_c_max |   deg_c_feels | weather   | wind   | rain   |
 |:-----------------|--------:|------------:|------------:|--------------:|:----------|:-------|:-------|
-| 2025-07-11 14:00 |   20.86 |       20.86 |       21.01 |         20.59 | Clouds    | Medium | None   |
-| 2025-07-11 17:00 |   19.55 |       18.94 |       19.55 |         19.36 | Rain      | High   | Low    |
+| 2025-07-11 14:00 |   20.3  |       20.3  |       20.89 |         20.03 | Clouds    | Medium | None   |
+| 2025-07-11 17:00 |   19.3  |       18.94 |       19.3  |         19.11 | Rain      | High   | Low    |
 | 2025-07-11 20:00 |   18.04 |       18.04 |       18.04 |         17.86 | Rain      | High   | Low    |
 | 2025-07-11 23:00 |   18.93 |       18.93 |       18.93 |         18.84 | Rain      | High   | Low    |
 | 2025-07-12 02:00 |   19.37 |       19.37 |       19.37 |         19.16 | Clouds    | High   | None   |
